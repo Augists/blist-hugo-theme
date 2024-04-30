@@ -1,9 +1,48 @@
 <section class="{{ .Site.Params.ascentColor | default "bg-pink-50" }} dark:bg-gray-900">
-  <div class="container max-w-screen-lg mx-auto px-6 py-12 grid md:grid-cols-2 gap-4 lg:gap-16 items-center">
+  <div class="container max-w-screen-lg mx-auto px-6 py-12 flex flex-col gap-4">
     <div>
       <h1 class="text-4xl font-bold mb-4">{{ .Site.Params.introTitle | safeHTML}}</h1>
       <p class="font-light text-lg">{{ .Site.Params.introSubtitle | safeHTML}}</p>
     </div>
-    <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" />
+
+    <!-- // images here -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+    <div class="max-w-screen-lg swiper-container">
+      <div class="swiper-wrapper">
+        {{ $itItems := .Site.Params.introImages }}
+        {{ range $itItems }}
+        <div class="mx-auto swiper-slide">
+          <img class="mx-auto" src="{{.src}}" alt="">
+        </div>
+        {{end}}
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        <!-- //自动调节高度 -->
+        autoHeight: true,
+        <!-- //键盘左右方向键控制 -->
+        keyboardControl : true,
+        <!-- //鼠标滑轮控制 -->
+        mousewheelControl : true,
+        <!-- //自动切换 -->
+        autoplay : 10000,
+        <!-- //懒加载 -->
+        lazyLoading : true,
+        lazyLoadingInPrevNext : true,
+        <!-- //无限循环 -->
+        loop : true,
+      });
+    </script>
+    <!-- <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" /> -->
+
+    {{ .Site.Params.about | safeHTML }}
   </div>
 </section>
