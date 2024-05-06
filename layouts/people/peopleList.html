@@ -4,6 +4,34 @@
       Our Group
     </div>
     <br />
+
+    <div class="text-2xl font-semibold">
+      Mentor
+    </div>
+    <div class="p-0 flex flex-col justify-center items-center">
+      <a href="{{ .Site.Params.mentor.url }}">
+        <div class="relative">
+          <img src="{{ .Site.Params.mentor.photo }}" alt="{{ .Site.Params.mentor.name_en }}" class="m-0 mb-4 rounded-full shadow-sm h-52 object-cover" />
+        </div>
+      </a>
+
+      <div class="my-2 flex flex-col flex-wrap items-center">
+        <div class="p-0">
+          <a href="{{ .Site.Params.mentor.url }}">
+            <div class="text-xl font-semibold">{{ .Site.Params.mentor.title }}</div>
+          </a>
+        </div>
+
+        <h5 class="text-sm font-light italic text-gray-500">
+          Professor
+        </h5>
+      </div>
+
+    </div>
+
+    <div class="text-2xl font-semibold">
+      Students
+    </div>
     <div class="flex flex-wrap justify-between" style="gap: 2rem;">
     {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "people")  }}
       {{- partial "people-card.html" . -}}
