@@ -43,6 +43,8 @@
     </script>
     <!-- <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" /> -->
 
-    {{ .Site.Params.about | safeHTML }}
+    {{ range .Site.Params.about }}
+    <p>{{ .content }}</p>
+    {{ end }}
   </div>
 </section>
