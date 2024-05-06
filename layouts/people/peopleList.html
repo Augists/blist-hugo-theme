@@ -1,9 +1,10 @@
 {{ define "main" }}
-  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-4">
+  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap" style="gap: 2rem;">
     <div class="text-4xl font-semibold">
       Our Group
     </div>
-    <div class="flex justify-between">
+    <br />
+    <div class="flex flex-wrap justify-between" style="gap: 2rem;">
     {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "people")  }}
       {{- partial "people-card.html" . -}}
     {{ end }}

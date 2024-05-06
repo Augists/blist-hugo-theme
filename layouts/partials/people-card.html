@@ -1,8 +1,8 @@
-<div class="p-0">
+<div class="p-0 flex flex-col justify-center items-center">
   <a href="{{ .Permalink }}">
   {{ if .Params.image }}
   <div class="relative">
-    <img src="{{ .Params.image }}" alt="{{ .Params.title }}" class="m-0 mb-4 rounded-full shadow-sm w-full h-52 object-cover" />
+    <img src="{{ .Params.image }}" alt="{{ .Params.title }}" class="m-0 mb-4 rounded-full shadow-sm h-52 object-cover" />
   </div>
   {{ else }}
   <div class="relative">
