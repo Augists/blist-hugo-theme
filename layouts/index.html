@@ -3,9 +3,13 @@
   {{ $frontBundle := .Site.Params.frontBundle | default "blog" }}
   <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-4">
     <div class="text-4xl font-semibold">
+    {{ if .Site.IsMultiLingual }}
+      {{ .Site.Params.news }}
+    {{ else }}
       News
+    {{ end }}
     </div>
-    {{ range (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle)  }}
+    {{ range (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle) }}
       {{- partial "blog-card.html" . -}}
     {{ end }}
   </div>
@@ -19,6 +23,4 @@
   <!--   </a> -->
   <!-- </div> -->
   <!-- {{ end }} -->
-
-  <!-- {{- partial "social.html" . -}} -->
 {{ end }}
