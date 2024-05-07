@@ -1,37 +1,37 @@
 {{ define "main" }}
   <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap" style="gap: 2rem;">
     <div class="text-4xl font-semibold">
-      Our Group
+      {{ .Params.title }}
     </div>
     <br />
 
-    {{ if .Site.Params.mentor }}
+    {{ if .Params.leader }}
     <div class="text-2xl font-semibold">
-      Mentor
+      {{ .Params.mentor }}
     </div>
     <div class="p-0 flex flex-col justify-center items-center">
-      <a href="{{ .Site.Params.mentor.url }}">
+      <a href="{{ .Params.leader.url }}">
         <div class="relative">
-          <img src="{{ .Site.Params.mentor.photo }}" alt="{{ .Site.Params.mentor.name_en }}" class="m-0 mb-4 rounded-full shadow-sm h-52 object-cover" />
+          <img src="{{ .Params.leader.photo }}" alt="{{ .Params.leader.title }}" class="m-0 mb-4 rounded-full shadow-sm h-52 object-cover" />
         </div>
       </a>
 
       <div class="my-2 flex flex-col flex-wrap items-center">
         <div class="p-0">
-          <a href="{{ .Site.Params.mentor.url }}">
-            <div class="text-xl font-semibold">{{ .Site.Params.mentor.title }}</div>
+          <a href="{{ .Params.leader.url }}">
+            <div class="text-xl font-semibold">{{ .Params.leader.title }}</div>
           </a>
         </div>
 
         <h5 class="text-sm font-light italic text-gray-500">
-          Professor
+          {{ .Params.leader.degree }}
         </h5>
       </div>
 
     </div>
 
     <div class="text-2xl font-semibold">
-      Students
+      {{ .Params.students }}
     </div>
 
     {{ end }}
