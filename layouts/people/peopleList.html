@@ -36,7 +36,7 @@
 
     {{ end }}
 
-    <div class="flex flex-wrap justify-between" style="gap: 2rem;">
+    <div class="flex flex-wrap justify-around" style="gap: 3rem; justify-content: space-around;">
     {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "people")  }}
       {{- partial "people-card.html" . -}}
     {{ end }}
