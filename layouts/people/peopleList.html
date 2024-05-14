@@ -11,7 +11,7 @@
     </div>
     <div class="p-0 flex flex-col justify-center items-center">
       <a href="{{ .Params.leader.url }}">
-        <div class="relative">
+        <div>
           <img src="{{ .Params.leader.photo }}" alt="{{ .Params.leader.title }}" class="m-0 mb-4 rounded-full shadow-sm h-52 object-cover" />
         </div>
       </a>
@@ -37,9 +37,26 @@
     {{ end }}
 
     <div class="flex flex-wrap justify-around" style="gap: 3rem; justify-content: space-around;">
-    {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "people")  }}
+    {{ range (where (where .Site.RegularPages.ByDate "Type" "people") "Layout" "people") }}
       {{- partial "people-card.html" . -}}
     {{ end }}
     </div>
+
+    <div class="text-2xl font-semibold mb-4 mt-4">
+      Alumni
+    </div>
+    <div class="flex flex-row justify-around">
+      {{ range .Params.Alumni }}
+      <div class="flex flex-col items-center">
+        <div class="text-xl font-semibold">
+          {{ .name }}
+        </div>
+        <div class="text-sm font-light italic text-gray-500">
+          {{ .work }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
   </div>
 {{ end }}

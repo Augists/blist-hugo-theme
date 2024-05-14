@@ -1,7 +1,7 @@
-<section class="{{ .Site.Params.ascentColor | default "bg-pink-50" }} dark:bg-gray-900">
+<section class="bg-white dark:bg-gray-800">
   <div class="container max-w-screen-lg mx-auto px-6 py-12 flex flex-col gap-4">
-    <div>
-      <h1 class="text-4xl font-bold mb-4">{{ .Site.Params.introTitle | safeHTML}}</h1>
+    <div class="mb-4">
+      <h1 class="text-4xl font-bold" style="margin-bottom: 0.5rem;">{{ .Site.Params.introTitle | safeHTML}}</h1>
       <p class="font-light text-lg">{{ .Site.Params.introSubtitle | safeHTML}}</p>
     </div>
 
@@ -36,7 +36,7 @@
         autoplay : 10000,
         <!-- //懒加载 -->
         lazyLoading : true,
-        lazyLoadingInPrevNext : true,
+        lazyLoadingInPrevNext : false,
         <!-- //无限循环 -->
         loop : true,
       });

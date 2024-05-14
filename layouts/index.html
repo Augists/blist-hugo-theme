@@ -1,17 +1,19 @@
 {{ define "main" }}
   {{- partial "intro.html" . -}}
   {{ $frontBundle := .Site.Params.frontBundle | default "blog" }}
-  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-4">
-    <div class="text-4xl font-semibold">
-    {{ if .Site.IsMultiLingual }}
-      {{ .Site.Params.news }}
-    {{ else }}
-      News
-    {{ end }}
+  <div class="bg-gray-100 dark:bg-gray-900">
+    <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-4">
+      <div class="text-4xl font-semibold">
+      {{ if .Site.IsMultiLingual }}
+        {{ .Site.Params.news }}
+      {{ else }}
+        News
+      {{ end }}
+      </div>
+      {{ range (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle) }}
+        {{- partial "blog-card.html" . -}}
+      {{ end }}
     </div>
-    {{ range (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle) }}
-      {{- partial "blog-card.html" . -}}
-    {{ end }}
   </div>
 
   <!-- {{ if gt (len (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle)) 6 }} -->
