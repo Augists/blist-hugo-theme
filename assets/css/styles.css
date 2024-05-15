@@ -112,3 +112,10 @@
 .button-4:-webkit-details-marker {
   display: none;
 }
+
+.prose a {
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: #d4d4d8;
+}
