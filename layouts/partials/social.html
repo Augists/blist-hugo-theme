@@ -6,6 +6,15 @@
     </div>
 
     <ul class="flex justify-center gap-x-3 flex-wrap gap-y-2">
+      {{ if .Site.Params.joinus }}
+      <li>
+        <a href="/joinus">
+          <button class="button-4">
+            Join Us
+          </button>
+        </a>
+      </li>
+      {{ end }}
       {{ range .Site.Params.homepage.social.icons }}
 
       {{ if eq .website "twitter" }}
