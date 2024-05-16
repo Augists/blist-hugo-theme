@@ -65,7 +65,6 @@
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   list-style: none;
@@ -78,7 +77,6 @@
   vertical-align: middle;
   white-space: nowrap;
   word-wrap: break-word;
-  margin-right: 8px;
   opacity: 0.7;
 }
 
@@ -111,6 +109,11 @@
 
 .button-4:-webkit-details-marker {
   display: none;
+}
+
+.button-light {
+  background-color: white;
+  opacity: 1;
 }
 
 .prose a {

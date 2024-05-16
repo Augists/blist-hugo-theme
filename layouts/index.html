@@ -10,7 +10,7 @@
         News
       {{ end }}
       </div>
-      {{ range (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle) }}
+      {{ range (where (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle) "Layout" .Language.Lang ) }}
         {{- partial "blog-card.html" . -}}
       {{ end }}
     </div>
