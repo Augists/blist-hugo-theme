@@ -55,10 +55,15 @@
 }
 
 main {
-  margin-top: 100px;
+  margin-top: 120px;
 }
+
+.bg-blue-100 {
+  background-color: rgba(219, 234, 254, 0.75 );
+}
+
 .header {
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(219, 234, 254, 0.75 );
 }
 .header:is(.dark *) {
   background-color: rgba(31, 41, 55, 0.75);
