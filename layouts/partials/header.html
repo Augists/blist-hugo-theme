@@ -1,7 +1,7 @@
-<div id="header" class="header bg-transparent backdrop-blur-lg bg-blue-100 fixed z-10 w-full min-h-32 flex">
+<div id="header" class="header bg-transparent fixed z-10 w-full min-h-32 flex">
 <header class="w-full lg:max-w-5xl flex mx-auto items-center relative">
   <div class="header-items w-full flex gap-4 px-6 my-4 justify-between items-start relative">
-  <a href="{{ .Site.Home.Permalink }}" class="capitalize font-extrabold text-2xl flex-shrink-0">
+  <a href="{{ .Site.Home.Permalink }}" class="logo capitalize font-extrabold text-2xl flex-shrink-0">
     {{ if .Site.Params.logo }}
     <div class="flex gap-2">
       <img src="{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" class="h-8 max-w-full" />
@@ -123,16 +123,71 @@
 </header>
 <script>
   const nav = document.getElementById("header");
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  const mobileMenu = document.querySelector('.mobile-menu');
   const navContent = nav.children[0];
-
-  window.addEventListener("scroll", (e) => {
+  function refreshTopBar() {
     // clamp the scrollY
     const clampedScroll = Math.min(window.scrollY / 80, 1);
-
+    if (clampedScroll == 1) {
+      nav.classList.add("menu-expanded");
+    } else if (mobileMenu.classList.contains('hidden')) {
+      nav.classList.remove("menu-expanded");
+    }
     nav.style.boxShadow = `0 0 24px rgba(0, 0, 0, ${clampedScroll * clampedScroll * clampedScroll * 0.1})` // cubic, less shadow when scrolling is small.
+    if (nav.querySelector("header:is(.dark *)") !== null) {
+      nav.style.backgroundColor = `rgba(17, 24, 39, ${0.6 * clampedScroll})`
+    } else {
+      nav.style.backgroundColor = `rgba(219, 234, 254, ${0.6 * clampedScroll})`
+    }
+    nav.style.backdropFilter = `blur(${16 * clampedScroll}px)`; // some devices does not support setting backdropFilter style, so use a class as backup.
     // navContent.style.paddingTop=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
     // navContent.style.paddingBottom=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
     nav.style.minHeight = `${clampedScroll * 4 + (1 - clampedScroll) * 8}rem`
-  })
+  }
+  window.addEventListener("scroll", (e) => refreshTopBar())
+
+  function toggleMenu() {
+    if (mobileMenu.classList.contains('hidden')) {
+      nav.classList.add("menu-expanded");
+    } else if (window.scrollY < 80) {
+      nav.classList.remove("menu-expanded");
+    }
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+
+{{ if .Site.Params.darkModeToggle }}
+  // On page load or when changing themes
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+    refreshTopBar();
+  }
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const darkStorage = localStorage.getItem('darkmode');
+  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (!darkStorage && isBrowserDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  if (darkStorage && darkStorage === 'dark') {
+    toggleDarkMode();
+  }
+{{ end }}
 </script>
+
 </div>

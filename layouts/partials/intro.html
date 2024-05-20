@@ -1,17 +1,21 @@
 
 {{ $swiperCss := resources.Get "css/swiper-bundle.min.css" }}
 {{ $swiper := resources.Get "js/swiper-bundle.min.js" }}
-<section class="bg-white dark:bg-gray-800">
-  <div class="container max-w-screen-lg mx-auto px-6 py-12 flex flex-col gap-4">
-    <div class="mb-4">
-      <h1 class="text-4xl font-bold" style="margin-bottom: 0.5rem;">{{ .Site.Params.introTitle | safeHTML}}</h1>
-      <p class="font-light text-lg">{{ .Site.Params.introSubtitle | safeHTML}}</p>
-    </div>
+<section class="bg-white dark:bg-gray-800 ">
+  <div class="w-full relative" style="margin-top: -8em">
+    <div class="swiper w-full">
+      <div id="swiper-mask" class="w-full h-full absolute flex flex-col justify-end">
 
-    <!-- // images here -->
-    <link rel="stylesheet" href="{{ $swiperCss.Permalink }}">
-    <div class="swiper w-full h-80">
-      <div class="swiper-wrapper">
+        <!-- <h1 class="text-4xl font-bold" style="margin-bottom: 0.5rem;">{{ .Site.Params.introTitle | safeHTML}}</h1> -->
+        <div class="title-container container max-w-screen-lg mx-auto px-6">
+          <a class="flex flex-col lg:flex-row items-start lg:items-center gap-6" href="/">
+            <img class="alt-logo text-2xl" src="{{ .Site.Params.altLogo }}" alt="ANTS">
+            <img class="team-logo text-2xl" src="{{ .Site.Params.teamLogo }}" alt="NetVerify">
+          </a>
+          
+        </div>
+      </div>
+      <div class="swiper-wrapper relative">
         {{ $itItems := .Site.Params.introImages }}
         {{ range $itItems }}
         <div class="swiper-slide">
@@ -19,42 +23,50 @@
         </div>
         {{end}}
       </div>
+
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
       <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
+    <!-- <div class="swiper-pagination"></div> -->
     </div>
+  </div>
+  <div class="about-section pb-6 mb-6">
 
-    <!-- Initialize Swiper -->
+    <div class="container max-w-screen-lg mx-auto px-6 py-12 flex flex-col gap-4">
+      <!-- <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" /> -->
 
-    <script src="{{ $swiper.Permalink }}"></script>
-    <script>
-      const swiper = new Swiper('.swiper', {
-        direction: 'horizontal',
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        },
-        //键盘左右方向键控制
-        keyboard: true,
-        //鼠标滑轮控制
-        mousewheel: true,
-        //自动切换
-        autoplay: {
-          delay: 5000,
-        },
-        autoHeight: true,
-        //懒加载
-        lazyLoading : true,
-        lazyLoadingInPrevNext : false,
-        //无限循环
-        rewind: true,
-        loop: true
-      });
-    </script>
-    <!-- <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" /> -->
+      <p class="font-light text-lg">{{ .Site.Params.introSubtitle | safeHTML}}</p>
 
-    {{ range .Site.Params.about }}
-    <p>{{ .content }}</p>
-    {{ end }}
+      {{ range .Site.Params.about }}
+      <p>{{ .content }}</p>
+      {{ end }}
+    </div>
   </div>
 </section>
+<link rel="stylesheet" href="{{ $swiperCss.Permalink }}">
+
+<!-- Initialize Swiper -->
+
+<script src="{{ $swiper.Permalink }}"></script>
+<script>
+  const swiper = new Swiper('.swiper', {
+    direction: 'horizontal',
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    //键盘左右方向键控制
+    keyboard: true,
+    //自动切换
+    autoplay: {
+      delay: 5000,
+    },
+    autoHeight: true,
+    //懒加载
+    lazyLoading : true,
+    lazyLoadingInPrevNext : false,
+    //无限循环
+    rewind: true,
+    loop: true
+  });
+</script>

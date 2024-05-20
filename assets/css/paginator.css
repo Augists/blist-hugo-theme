@@ -13,3 +13,13 @@ a.page-link {
 .page-item.disabled {
   @apply text-gray-400 hover:bg-transparent hover:text-gray-400 cursor-not-allowed;
 }
+
+.swiper-button-next, .swiper-button-prev {
+  margin: 0 5px;
+  color: rgba(255, 255, 255, 0.2) !important;
+  font-weight: bold !important;
+  transition: color 200ms ease-out;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
