@@ -129,7 +129,7 @@
     // clamp the scrollY
     const clampedScroll = Math.min(window.scrollY / 80, 1);
 
-    nav.style.boxShadow = `0 0 24px rgba(0, 0, 0, ${clampedScroll * clampedScroll * 0.1})` // quadratic, less shadow when scrolling is small.
+    nav.style.boxShadow = `0 0 24px rgba(0, 0, 0, ${clampedScroll * clampedScroll * clampedScroll * 0.1})` // cubic, less shadow when scrolling is small.
     // navContent.style.paddingTop=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
     // navContent.style.paddingBottom=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
     nav.style.minHeight = `${clampedScroll * 4 + (1 - clampedScroll) * 8}rem`
