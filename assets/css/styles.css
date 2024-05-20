@@ -55,13 +55,18 @@
 }
 
 main {
-  margin-top: 100px;
+  margin-top: 120px;
 }
+
+.bg-blue-100 {
+  background-color: rgba(219, 234, 254, 0.75 );
+}
+
 .header {
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(219, 234, 254, 0.75 );
 }
 .header:is(.dark *) {
-  background-color: rgba(31, 41, 55, 0.75);
+  background-color: rgba(17, 24, 39, 0.75);
 }
 .header > .container {
   box-shadow: 0 0 24px transparent;
@@ -70,7 +75,7 @@ main {
 .button-4 {
   appearance: none;
   background-color: transparent;
-  /* border: 2px solid rgba(27, 31, 35, 0.15); */
+  border: 2px solid rgba(108, 114, 127, 1);
   border-radius: 6px;
   /* box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset; */
   box-sizing: border-box;
@@ -84,18 +89,13 @@ main {
               color 100ms ease-out,
               border-color 100ms ease-out;
   /* background-color: #3f7bf2; */
-  /* color: white; */
   color: inherit;
-  border-width: 2px;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.8);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
   white-space: nowrap;
   word-wrap: break-word;
-  /* opacity: 0.7; */
 }
 .button-4:is(.dark *) {
   border-color: white;
