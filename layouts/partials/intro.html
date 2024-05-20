@@ -70,3 +70,12 @@
     loop: true
   });
 </script>
+<style>
+  /* use inline style to make */
+.header.menu-expanded .logo {
+  transition: color 200ms ease-out;
+}
+.header:not(.menu-expanded) .logo {
+  color: transparent;
+}
+</style>

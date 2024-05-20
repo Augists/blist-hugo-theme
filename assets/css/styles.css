@@ -105,12 +105,6 @@ main {
 .header.menu-expanded:is(.dark *) {
   background-color: rgba(17, 24, 39, 0.75) !important;
 }
-.header.menu-expanded .logo {
-  transition: color 200ms ease-out;
-}
-.header:not(.menu-expanded) .logo {
-  color: transparent;
-}
 .title-container {
   margin-bottom: 4vh;
   color: white;
