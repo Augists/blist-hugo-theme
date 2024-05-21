@@ -1,199 +1,211 @@
 <div id="header" class="header bg-transparent fixed z-10 w-full min-h-32 flex">
-<header class="w-full lg:max-w-5xl flex mx-auto items-center relative">
-  <div class="header-items w-full flex gap-4 px-6 my-4 justify-between items-start relative">
-  <a href="{{ .Site.Home.Permalink }}" class="logo capitalize font-extrabold text-2xl flex-shrink-0">
-    {{ if .Site.Params.logo }}
-    <div class="flex gap-2">
-      <img src="{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" class="h-8 max-w-full" />
-      <div>{{ .Site.Title }}</div>
-    </div>
-    {{ else }}
-    {{ .Site.Title }}
-    {{ end }}
-  </a>
-  <div class="flex-right flex flex-col items-end">
-  <button class="mobile-menu-button sm:hidden">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <line x1="4" y1="8" x2="20" y2="8" />
-      <line x1="4" y1="16" x2="20" y2="16" />
-    </svg>
-  </button>
-  <ul class="mobile-menu sm:relative z-10 pl-6 py-6 sm:p-0 top-full left-0 w-full flex-grow hidden sm:flex sm:flex-wrap flex-col sm:flex-row sm:ml-5 justify-center sm:justify-end items-end sm:items-center gap-6">
-
-    {{ range .Site.Menus.main }}
-    {{ if eq .Name "Join us" }}
-    <li>
-      <a href="{{ .URL | relLangURL }}">
-        <button class="button-4">
-          {{ .Name }}
-        </button>
-      </a>
-    </li>
-    {{ else }}
-    <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
-    {{ end }}
-    {{ end }}
-
-    {{ if .Site.IsMultiLingual }}
-    {{ if ge (len .Site.Languages) 3 }}
-    <li class="relative cursor-pointer">
-      <span class="language-switcher flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-          stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <circle cx="12" cy="12" r="9" />
-          <line x1="3.6" y1="9" x2="20.4" y2="9" />
-          <line x1="3.6" y1="15" x2="20.4" y2="15" />
-          <path d="M11.5 3a17 17 0 0 0 0 18" />
-          <path d="M12.5 3a17 17 0 0 1 0 18" />
-        </svg>
-        <a>{{ i18n "languageSwitcherLabel" }}</a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M18 15l-6 -6l-6 6h12" transform="rotate(180 12 12)" />
-        </svg>
-      </span>
-      <div
-        class="language-dropdown absolute top-full mt-2 left-0 flex-col gap-2 bg-gray-100 dark:bg-gray-900 dark:text-white z-10 hidden">
-        {{ range .Site.Languages }}
-        {{ if not (eq .Lang $.Site.Language.Lang) }}
-        <a class="px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700" href="/{{ .Lang }}/" lang="{{ .Lang }}">{{ default .Lang .LanguageName }}</a>
-        {{ end }}
-        {{ end }}
+  <header class="w-full lg:max-w-5xl flex mx-auto items-center relative">
+    <div class="header-items w-full flex gap-4 px-6 my-4 justify-between items-start relative">
+      <div class="logo capitalize text-2xl flex-left flex-shrink-0">
+        <div class="flex gap-2 items-center">
+          {{ range .Site.Params.logo }}
+          <a href="{{ .url }}">
+            <img src="{{ .src }}" alt="{{ .Site.Title }}" class="h-8 max-w-full" />
+          </a>
+          {{ end }}
+          <div class="flex flex-row">
+            {{ if .Site.Params.group }}
+            <a href="{{ .Site.Params.groupUrl }}">
+              {{ .Site.Params.group }}
+            </a>
+            <div>
+              &nbsp;/&nbsp;
+            </div>
+            {{ end }}
+            <a href="{{ .Site.Home.Permalink }}">
+              {{ .Site.Title }}
+            </a>
+          </div>
+        </div>
       </div>
-    </li>
-    {{ else }}
-    <li class="flex items-center">
-      {{ range .Site.Languages }}
-      {{ if not (eq .Lang $.Site.Language.Lang) }}
-      <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5"
-        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <circle cx="12" cy="12" r="9" />
-        <line x1="3.6" y1="9" x2="20.4" y2="9" />
-        <line x1="3.6" y1="15" x2="20.4" y2="15" />
-        <path d="M11.5 3a17 17 0 0 0 0 18" />
-        <path d="M12.5 3a17 17 0 0 1 0 18" />
-      </svg>
-      <a href="/{{ .Lang }}/" lang="{{ .Lang }}">
-        {{ if eq .Lang "zh"}}
-        中文
-        {{ else }}
-        {{ default .Lang .LanguageName }}
-        {{ end }}
-      </a>
-      {{ end }}
-      {{ end }}
-    </li>
-    {{ end }}
-    {{ end }}
+      <div class="flex-right flex flex-col items-end">
+        <button class="mobile-menu-button sm:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <line x1="4" y1="8" x2="20" y2="8" />
+            <line x1="4" y1="16" x2="20" y2="16" />
+          </svg>
+        </button>
+        <ul class="mobile-menu sm:relative z-10 pl-6 py-6 sm:p-0 top-full left-0 w-full flex-grow hidden sm:flex sm:flex-wrap flex-col sm:flex-row sm:ml-5 justify-center sm:justify-end items-end sm:items-center gap-6">
 
-    {{ if .Site.Params.enableSearch }}
-    <li class="grid place-items-center">
-      <span class="open-search inline-block cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <circle cx="10" cy="10" r="7" />
-          <line x1="21" y1="21" x2="15" y2="15" />
-        </svg>
-      </span>
-    </li>
-    {{ end }}
+          {{ range .Site.Menus.main }}
+          {{ if eq .Name "Join us" }}
+          <li>
+            <a href="{{ .URL | relLangURL }}">
+              <button class="button-4">
+                {{ .Name }}
+              </button>
+            </a>
+          </li>
+          {{ else }}
+          <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+          {{ end }}
+          {{ end }}
+
+          {{ if .Site.IsMultiLingual }}
+          {{ if ge (len .Site.Languages) 3 }}
+          <li class="relative cursor-pointer">
+            <span class="language-switcher flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                                                             stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <circle cx="12" cy="12" r="9" />
+                <line x1="3.6" y1="9" x2="20.4" y2="9" />
+                <line x1="3.6" y1="15" x2="20.4" y2="15" />
+                <path d="M11.5 3a17 17 0 0 0 0 18" />
+                <path d="M12.5 3a17 17 0 0 1 0 18" />
+              </svg>
+              <a>{{ i18n "languageSwitcherLabel" }}</a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                                                                                          stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M18 15l-6 -6l-6 6h12" transform="rotate(180 12 12)" />
+              </svg>
+            </span>
+            <div
+                class="language-dropdown absolute top-full mt-2 left-0 flex-col gap-2 bg-gray-100 dark:bg-gray-900 dark:text-white z-10 hidden">
+              {{ range .Site.Languages }}
+              {{ if not (eq .Lang $.Site.Language.Lang) }}
+              <a class="px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700" href="/{{ .Lang }}/" lang="{{ .Lang }}">{{ default .Lang .LanguageName }}</a>
+              {{ end }}
+              {{ end }}
+            </div>
+          </li>
+          {{ else }}
+          <li class="flex items-center">
+            {{ range .Site.Languages }}
+            {{ if not (eq .Lang $.Site.Language.Lang) }}
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                                                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <circle cx="12" cy="12" r="9" />
+              <line x1="3.6" y1="9" x2="20.4" y2="9" />
+              <line x1="3.6" y1="15" x2="20.4" y2="15" />
+              <path d="M11.5 3a17 17 0 0 0 0 18" />
+              <path d="M12.5 3a17 17 0 0 1 0 18" />
+            </svg>
+            <a href="/{{ .Lang }}/" lang="{{ .Lang }}">
+              {{ if eq .Lang "zh"}}
+              中文
+              {{ else }}
+              {{ default .Lang .LanguageName }}
+              {{ end }}
+            </a>
+            {{ end }}
+            {{ end }}
+          </li>
+          {{ end }}
+          {{ end }}
+
+          {{ if .Site.Params.enableSearch }}
+          <li class="grid place-items-center">
+            <span class="open-search inline-block cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <circle cx="10" cy="10" r="7" />
+                <line x1="21" y1="21" x2="15" y2="15" />
+              </svg>
+            </span>
+          </li>
+          {{ end }}
+
+          {{ if .Site.Params.darkModeToggle }}
+          <li class="grid place-items-center">
+            <span class="toggle-dark-mode inline-block cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <circle cx="12" cy="12" r="3" />
+                <line x1="12" y1="5" x2="12" y2="5.01" />
+                <line x1="17" y1="7" x2="17" y2="7.01" />
+                <line x1="19" y1="12" x2="19" y2="12.01" />
+                <line x1="17" y1="17" x2="17" y2="17.01" />
+                <line x1="12" y1="19" x2="12" y2="19.01" />
+                <line x1="7" y1="17" x2="7" y2="17.01" />
+                <line x1="5" y1="12" x2="5" y2="12.01" />
+                <line x1="7" y1="7" x2="7" y2="7.01" />
+              </svg>
+            </span>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </header>
+  <script>
+    const nav = document.getElementById("header");
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const navContent = nav.children[0];
+    function refreshTopBar() {
+      // clamp the scrollY
+      const clampedScroll = Math.min(window.scrollY / 80, 1);
+      if (clampedScroll == 1) {
+        nav.classList.add("menu-expanded");
+      } else if (mobileMenu.classList.contains('hidden')) {
+        nav.classList.remove("menu-expanded");
+      }
+      nav.style.boxShadow = `0 0 24px rgba(0, 0, 0, ${clampedScroll * clampedScroll * clampedScroll * 0.1})` // cubic, less shadow when scrolling is small.
+      if (nav.querySelector("header:is(.dark *)") !== null) {
+        nav.style.backgroundColor = `rgba(17, 24, 39, ${0.6 * clampedScroll})`
+      } else {
+        nav.style.backgroundColor = `rgba(219, 234, 254, ${0.6 * clampedScroll})`
+      }
+      nav.style.backdropFilter = `blur(${16 * clampedScroll}px)`; // some devices does not support setting backdropFilter style, so use a class as backup.
+      // navContent.style.paddingTop=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
+      // navContent.style.paddingBottom=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
+      nav.style.minHeight = `${clampedScroll * 4 + (1 - clampedScroll) * 8}rem`
+    }
+    window.addEventListener("scroll", (e) => refreshTopBar())
+
+    function toggleMenu() {
+      if (mobileMenu.classList.contains('hidden')) {
+        nav.classList.add("menu-expanded");
+      } else if (window.scrollY < 80) {
+        nav.classList.remove("menu-expanded");
+      }
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
+    }
+    if(mobileMenu && mobileMenuButton){
+      mobileMenuButton.addEventListener('click', toggleMenu)
+    }
 
     {{ if .Site.Params.darkModeToggle }}
-    <li class="grid place-items-center">
-      <span class="toggle-dark-mode inline-block cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <circle cx="12" cy="12" r="3" />
-          <line x1="12" y1="5" x2="12" y2="5.01" />
-          <line x1="17" y1="7" x2="17" y2="7.01" />
-          <line x1="19" y1="12" x2="19" y2="12.01" />
-          <line x1="17" y1="17" x2="17" y2="17.01" />
-          <line x1="12" y1="19" x2="12" y2="19.01" />
-          <line x1="7" y1="17" x2="7" y2="17.01" />
-          <line x1="5" y1="12" x2="5" y2="12.01" />
-          <line x1="7" y1="7" x2="7" y2="7.01" />
-        </svg>
-      </span>
-    </li>
+    // On page load or when changing themes
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark')
+        localStorage.setItem('darkmode', 'light')
+      } else {
+        document.documentElement.classList.add('dark')
+        localStorage.setItem('darkmode', 'dark')
+      }
+      refreshTopBar();
+    }
+    const darkmode = document.querySelector('.toggle-dark-mode');
+    if (darkmode) {
+      darkmode.addEventListener('click', toggleDarkMode);
+    }
+
+    const darkStorage = localStorage.getItem('darkmode');
+    const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (!darkStorage && isBrowserDark) {
+      document.documentElement.classList.add('dark');
+    }
+
+    if (darkStorage && darkStorage === 'dark') {
+      toggleDarkMode();
+    }
     {{ end }}
-  </ul>
-</div>
-</div>
-</header>
-<script>
-  const nav = document.getElementById("header");
-  const mobileMenuButton = document.querySelector('.mobile-menu-button');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const navContent = nav.children[0];
-  function refreshTopBar() {
-    // clamp the scrollY
-    const clampedScroll = Math.min(window.scrollY / 80, 1);
-    if (clampedScroll == 1) {
-      nav.classList.add("menu-expanded");
-    } else if (mobileMenu.classList.contains('hidden')) {
-      nav.classList.remove("menu-expanded");
-    }
-    nav.style.boxShadow = `0 0 24px rgba(0, 0, 0, ${clampedScroll * clampedScroll * clampedScroll * 0.1})` // cubic, less shadow when scrolling is small.
-    if (nav.querySelector("header:is(.dark *)") !== null) {
-      nav.style.backgroundColor = `rgba(17, 24, 39, ${0.6 * clampedScroll})`
-    } else {
-      nav.style.backgroundColor = `rgba(219, 234, 254, ${0.6 * clampedScroll})`
-    }
-    nav.style.backdropFilter = `blur(${16 * clampedScroll}px)`; // some devices does not support setting backdropFilter style, so use a class as backup.
-    // navContent.style.paddingTop=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
-    // navContent.style.paddingBottom=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
-    nav.style.minHeight = `${clampedScroll * 4 + (1 - clampedScroll) * 8}rem`
-  }
-  window.addEventListener("scroll", (e) => refreshTopBar())
-
-  function toggleMenu() {
-    if (mobileMenu.classList.contains('hidden')) {
-      nav.classList.add("menu-expanded");
-    } else if (window.scrollY < 80) {
-      nav.classList.remove("menu-expanded");
-    }
-    mobileMenu.classList.toggle('hidden');
-    mobileMenu.classList.toggle('flex');
-  }
-  if(mobileMenu && mobileMenuButton){
-    mobileMenuButton.addEventListener('click', toggleMenu)
-  }
-
-{{ if .Site.Params.darkModeToggle }}
-  // On page load or when changing themes
-  function toggleDarkMode() {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('darkmode', 'light')
-    } else {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('darkmode', 'dark')
-    }
-    refreshTopBar();
-  }
-  const darkmode = document.querySelector('.toggle-dark-mode');
-  if (darkmode) {
-    darkmode.addEventListener('click', toggleDarkMode);
-  }
-
-  const darkStorage = localStorage.getItem('darkmode');
-  const isBrowserDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  if (!darkStorage && isBrowserDark) {
-    document.documentElement.classList.add('dark');
-  }
-
-  if (darkStorage && darkStorage === 'dark') {
-    toggleDarkMode();
-  }
-{{ end }}
-</script>
+  </script>
 
 </div>
