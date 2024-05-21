@@ -44,25 +44,25 @@
 
     </div>
 
-    <div>
-      <h2>
-        People
-      </h2>
-      <div class="flex flex-row justify-around">
-      {{ $peopleSlice := (where .Site.RegularPages "Type" "people") }}
-      {{ $paperAuthorSlice := .Params.paper.author }}
-
-      {{ range $paperAuthor := $paperAuthorSlice }}
-        {{ if $paperAuthor.id }}
-          {{ range $people := $peopleSlice.ByDate }}
-            {{ if eq $paperAuthor.id $people.Params.name }}
-              {{- partial "author-card.html" . -}}
-            {{ end }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
-      </div>
-    </div>
+    <!-- <div> -->
+    <!--   <h2> -->
+    <!--     People -->
+    <!--   </h2> -->
+    <!--   <div class="flex flex-row justify-around"> -->
+    <!--   {{ $peopleSlice := (where .Site.RegularPages "Type" "people") }} -->
+    <!--   {{ $paperAuthorSlice := .Params.paper.author }} -->
+    <!---->
+    <!--   {{ range $paperAuthor := $paperAuthorSlice }} -->
+    <!--     {{ if $paperAuthor.id }} -->
+    <!--       {{ range $people := $peopleSlice.ByDate }} -->
+    <!--         {{ if eq $paperAuthor.id $people.Params.name }} -->
+    <!--           {{- partial "author-card.html" . -}} -->
+    <!--         {{ end }} -->
+    <!--       {{ end }} -->
+    <!--     {{ end }} -->
+    <!--   {{ end }} -->
+    <!--   </div> -->
+    <!-- </div> -->
 
     <div>
       <h2>

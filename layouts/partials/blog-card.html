@@ -1,4 +1,4 @@
-<div class="p-0">
+<div class="p-0 {{ .Site.Params.ascentColor }} dark:bg-gray-800">
   {{ $lastmodstr := (partial "date.html" (dict "date" .Lastmod "language" $.Page.Language "format" "long")) }}
   {{ $datestr := (partial "date.html" (dict "date" .Date "language" $.Page.Language "format" "long")) }}
 
@@ -14,22 +14,23 @@
   <!-- {{ end }} -->
 
   <!-- <a href="{{ .Permalink }}"> -->
-  {{ if .Params.thumbnail }}
-  <div class="relative">
-    <img src="{{ .Params.thumbnail }}" alt="{{ .Params.title }}" class="rounded-lg shadow-sm w-full h-52 object-cover" />
-    {{ if not (or (or .Site.Params.hideMeta .Params.hideMeta) false) }}
-    <div class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white text-sm px-2 py-0.5">
-      {{ partial "date.html" (dict "date" .Date "language" $.Page.Language "format" "short") }}
-    </div>
-    {{ end }}
-  </div>
-  {{ end }}
+  <!-- {{ if .Params.thumbnail }} -->
+  <!-- <div class="relative"> -->
+  <!--   <img src="{{ .Params.thumbnail }}" alt="{{ .Params.title }}" class="rounded-lg shadow-sm w-full h-52 object-cover" /> -->
+  <!--   {{ if not (or (or .Site.Params.hideMeta .Params.hideMeta) false) }} -->
+  <!--   <div class="absolute top-4 right-4 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white text-sm px-2 py-0.5"> -->
+  <!--     {{ partial "date.html" (dict "date" .Date "language" $.Page.Language "format" "short") }} -->
+  <!--   </div> -->
+  <!--   {{ end }} -->
+  <!-- </div> -->
+  <!-- {{ end }} -->
 
-  <div class="my-2">
+  <div class="my-4 mx-6">
+  <div class="mb-2">
     <div class="text-xl font-semibold">{{ .Params.title }}</div>
 
     {{ if not (or (or .Site.Params.hideMeta .Params.hideMeta) false) }}
-    <h5 class="text-sm flex items-center flex-wrap">
+    <h5 class="text-sm flex items-center flex-wrap text-gray-700 dark:text-white">
       <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <rect x="4" y="5" width="16" height="16" rx="2" />
@@ -89,4 +90,5 @@
       </div>
     {{- end }}
   {{ end }}
+  </div>
 </div>
