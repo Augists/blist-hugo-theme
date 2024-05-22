@@ -9,8 +9,12 @@
         <!-- <h1 class="text-4xl font-bold" style="margin-bottom: 0.5rem;">{{ .Site.Params.introTitle | safeHTML}}</h1> -->
         <div class="title-container container max-w-screen-lg mx-auto px-6">
           <a class="flex flex-col lg:flex-row items-start lg:items-center gap-6" href="/">
-            <img class="alt-logo text-2xl" src="{{ .Site.Params.altLogo }}" alt="ANTS">
-            <img class="team-logo text-2xl" src="{{ .Site.Params.teamLogo }}" alt="NetVerify">
+            {{ if .Site.Params.altLogo }}
+            <img class="alt-logo text-2xl" src="{{ .Site.Params.altLogo }}">
+            {{ end }}
+            {{ if .Site.Params.teamLogo }}
+            <img class="team-logo text-2xl" src="{{ .Site.Params.teamLogo }}">
+            {{ end }}
           </a>
           
         </div>

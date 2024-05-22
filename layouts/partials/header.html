@@ -34,17 +34,17 @@
         <ul class="mobile-menu sm:relative z-10 pl-6 py-6 sm:p-0 top-full left-0 w-full flex-grow hidden sm:flex sm:flex-wrap flex-col sm:flex-row sm:ml-5 justify-center sm:justify-end items-end sm:items-center gap-6">
 
           {{ range .Site.Menus.main }}
-          {{ if eq .Name "Join us" }}
-          <li>
-            <a href="{{ .URL | relLangURL }}">
-              <button class="button-4">
-                {{ .Name }}
-              </button>
-            </a>
-          </li>
-          {{ else }}
-          <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
-          {{ end }}
+            {{ if eq .Name "Join us" }}
+            <li>
+              <a href="{{ .URL | relLangURL }}">
+                <button class="button-4">
+                  {{ .Name }}
+                </button>
+              </a>
+            </li>
+            {{ else }}
+            <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+            {{ end }}
           {{ end }}
 
           {{ if .Site.IsMultiLingual }}

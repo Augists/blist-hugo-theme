@@ -5,9 +5,9 @@
     </div>
     
     <div class="flex flex-col gap-6">
-        {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "research")  }}
-         {{- partial "research-card.html" . -}}
-        {{ end }}
+    {{ range (where .Site.RegularPages "Type" "research")  }}
+        {{- partial "research-card.html" . -}}
+    {{ end }}
     </div>
 </div>
 {{ end }}
