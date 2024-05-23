@@ -108,9 +108,9 @@
     <div class="flex flex-col" style="gap: 1.5rem;">
 
       <!-- <h1 style="margin-bottom: 0em;"> -->
-      <h1>
+      <div class="font-extrabold text-4xl">
         {{ .Params.title }}
-      </h1>
+      </div>
 
       <div>
         {{ range .Params.introduction }}
@@ -120,9 +120,9 @@
 
       <!-- award -->
       {{ if .Params.award }}
-      <h2>
+      <div class="font-extrabold text-2xl">
         Award
-      </h2>
+      </div>
       <div class="flex flex-col" style="gap: 1.5rem;">
         {{ range .Params.award }}
         <div class="flex-1">
@@ -139,13 +139,64 @@
       </div>
       {{ end }}
 
+      {{ if .Params.honor }}
+      <div class="font-extrabold text-2xl">
+        Honor
+      </div>
+      <div class="flex flex-col">
+        {{ range .Params.honor }}
+          <div class="flex flex-row mb-2">
+            <div>
+              {{ .content }}，
+            </div>
+            <div class="italic text-gray-500">
+              {{ .time }}
+            </div>
+          </div>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      {{ if .Params.service }}
+      <div class="font-extrabold text-2xl">
+        Service
+      </div>
+      <div class="flex flex-col">
+        {{ range .Params.service }}
+        <div class="mb-4 flex-1">
+          <div class="flex flex-col">
+            <div>
+              {{ .commission }}
+            </div>
+            <div class="text-sm italic text-gray-500">
+            {{ range .conference }}
+              <div>{{ . }}</div>
+            {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      <!-- recent papers -->
+      <div class="font-extrabold text-2xl">
+        Recent Papers
+      </div>
+      <div class="flex flex-col">
+        {{ range $k, $v := (where .Site.RegularPages.ByDate.Reverse "Type" "paper") }}
+          {{ if lt $k 5 }}
+            {{- partial "paper-card.html" . -}}
+          {{ end }}
+        {{ end }}
+      </div>
 
       <!-- education -->
       <!-- <h2 style="margin-top: 0em;"> -->
-      <h2>
-        Education
-      </h2>
-      <div class="flex flex-col" style="gap: 1.5rem;">
+      <div class="font-extrabold text-2xl">
+        Education Experience
+      </div>
+      <div class="flex flex-col gap-2">
         {{ range .Params.education }}
         <div style="min-width: 16rem;">
           <div class="flex flex-col" style="gap: 0.5rem;">
@@ -153,12 +204,12 @@
           </div>
 
           <div class="text-sm italic text-gray-500" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
-            {{ .degree }}
+            {{ .degree }}, {{ .time }}
           </div>
 
-          <div class="text-sm" style="margin-top: 0.25rem; margin-bottom: 0.125rem;">
-            {{ .time }}
-          </div>
+          <!-- <div class="text-sm" style="margin-top: 0.25rem; margin-bottom: 0.125rem;"> -->
+            <!-- {{ .time }} -->
+          <!-- </div> -->
         </div>
         {{ end }}
       </div>

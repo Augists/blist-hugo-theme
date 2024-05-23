@@ -8,19 +8,13 @@
             <img src="{{ .src }}" alt="{{ .Site.Title }}" class="h-8 max-w-full" />
           </a>
           {{ end }}
-          <div class="title-group flex flex-row">
-            {{ if .Site.Params.group }}
-            <a href="{{ .Site.Params.groupUrl }}">
-              {{ .Site.Params.group }}
-            </a>
-            <div>
-              &nbsp;/&nbsp;
-            </div>
-            {{ end }}
-            <a href="{{ .Site.Home.Permalink }}">
-              {{ .Site.Title }}
-            </a>
-          </div>
+          <img class="inline dark:hidden" height="32" width="130" src="{{ .Site.Params.teamLogo }}">
+          <img class="hidden dark:inline" height="32" width="130" src="{{ .Site.Params.teamLogoDark }}">
+          <!-- <div class="flex flex-row"> -->
+          <!--   <a href="{{ .Site.Home.Permalink }}"> -->
+          <!--     {{ .Site.Title }} -->
+          <!--   </a> -->
+          <!-- </div> -->
         </div>
       </div>
       <div class="flex-right flex flex-col items-end">
