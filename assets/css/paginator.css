@@ -16,7 +16,7 @@ a.page-link {
 
 .swiper-button-next, .swiper-button-prev {
   margin: 0 5px;
-  color: rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.1) !important;
   font-weight: bold !important;
   transition: color 200ms ease-out;
 }

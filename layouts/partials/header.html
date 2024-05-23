@@ -1,6 +1,6 @@
 <div id="header" class="header bg-transparent fixed z-10 w-full min-h-32 flex items-center">
   <header class="w-full lg:max-w-5xl flex mx-auto items-center relative">
-    <div class="header-items w-full flex gap-4 px-6 my-4 justify-between items-start sm:items-center relative">
+    <div class="header-items w-full flex gap-4 px-6 my-4 justify-between items-center relative">
       <div class="logo capitalize text-2xl flex-left flex-shrink-0">
         <div class="flex gap-2 items-center">
           {{ range .Site.Params.logo }}
@@ -20,14 +20,14 @@
         </div>
       </div>
       <div class="flex-right flex flex-col items-end">
-        <button class="mobile-menu-button sm:hidden">
+        <button class="mobile-menu-button md:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <line x1="4" y1="8" x2="20" y2="8" />
             <line x1="4" y1="16" x2="20" y2="16" />
           </svg>
         </button>
-        <ul class="mobile-menu sm:relative z-10 pl-6 py-6 sm:p-0 top-full left-0 w-full flex-grow hidden sm:flex sm:flex-wrap flex-col sm:flex-row sm:ml-5 justify-center sm:justify-end items-end sm:items-center gap-6">
+        <ul class="mobile-menu md:relative z-10 pl-6 py-6 md:p-0 top-full left-0 w-full flex-grow hidden md:flex md:flex-wrap flex-col md:flex-row md:ml-5 justify-center md:justify-end items-end md:items-center gap-6">
 
           {{ range .Site.Menus.main }}
             {{ if eq .Name "Join us" }}
@@ -143,19 +143,8 @@
     function refreshTopBar() {
       // clamp the scrollY
       const clampedScroll = Math.min(window.scrollY / 80, 1);
-      if (clampedScroll == 1) {
-        nav.classList.add("menu-expanded");
-      } else if (mobileMenu.classList.contains('hidden')) {
-        nav.classList.remove("menu-expanded");
-      }
       nav.style.boxShadow = `0 0 24px rgba(0, 0, 0, ${clampedScroll * clampedScroll * clampedScroll * 0.1})` // cubic, less shadow when scrolling is small.
-      console.log(nav.style.backgroundColor);
-      if (nav.querySelector("header:is(.dark *)") !== null) {
-        nav.style.backgroundColor = `rgba(17, 24, 39, ${0.6 * clampedScroll})`
-      } else {
-        nav.style.backgroundColor = `rgba(219, 234, 254, ${0.6 * clampedScroll})`
-      }
-      nav.style.backdropFilter = `blur(${16 * clampedScroll}px)`; // some devices does not support setting backdropFilter style, so use a class as backup.
+
       // navContent.style.paddingTop=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
       // navContent.style.paddingBottom=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
       nav.style.minHeight = `${clampedScroll * 4 + (1 - clampedScroll) * 8}rem`
@@ -165,11 +154,8 @@
     if (window.onscroll != (() => {}))
       window.onscroll = refreshTopBar;
     function toggleMenu() {
-      if (mobileMenu.classList.contains('hidden')) {
-        nav.classList.add("menu-expanded");
-      } else if (window.scrollY < 80) {
-        nav.classList.remove("menu-expanded");
-      }
+
+      nav.classList.toggle("menu-expanded");
       mobileMenu.classList.toggle('hidden');
       mobileMenu.classList.toggle('flex');
     }

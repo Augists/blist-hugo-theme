@@ -72,7 +72,7 @@ main {
 .swiper-slide img {
   width: 100%;
   aspect-ratio: 16 / 9;
-  min-height: 60vh;
+  min-height: 68vh;
   max-height: 75vh;
   object-fit: cover;
 }
@@ -102,18 +102,21 @@ main {
 }
 
 .header {
+  background-color: rgba(219, 234, 254, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
   transition: background-color 200ms ease-out;
+}
+.header:is(.dark *) {
+  background-color: rgba(17, 24, 39, 0.75) !important;
 }
 .header > .container {
   box-shadow: 0 0 24px transparent;
 }
 .header.menu-expanded {
-  backdrop-filter: blur(16px) !important;
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.1) !important;
-  background-color: rgba(219, 234, 254, 0.75) !important;
 }
-.header.menu-expanded:is(.dark *) {
-  background-color: rgba(17, 24, 39, 0.75) !important;
+.header.menu-expanded .header-items {
+  align-items: flex-start;
 }
 .title-container {
   margin-bottom: 6vh;
