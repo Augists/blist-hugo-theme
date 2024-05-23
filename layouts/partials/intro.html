@@ -16,14 +16,16 @@
             <img class="team-logo text-2xl" src="{{ .Site.Params.teamLogo }}">
             {{ end }}
           </a>
+          <div class="text-8xl">
+          {{ .Site.Params.introTitle }}
+          </div>
           
         </div>
       </div>
       <div class="swiper-wrapper relative">
-        {{ $itItems := .Site.Params.introImages }}
-        {{ range $itItems }}
+        {{ range .Site.Params.introImages }}
         <div class="swiper-slide">
-          <img src="{{.src}}" alt="">
+          <img src="{{ .src }}" alt="">
         </div>
         {{end}}
       </div>
@@ -39,7 +41,7 @@
     <div class="container max-w-screen-lg mx-auto px-6 py-12 flex flex-col gap-4">
       <!-- <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" /> -->
 
-      <p class="font-light text-lg">{{ .Site.Params.introSubtitle | safeHTML}}</p>
+      <p class="text-2xl">{{ .Site.Params.introSubtitle | safeHTML}}</p>
 
       {{ range .Site.Params.about }}
       <p>{{ .content }}</p>

@@ -139,9 +139,9 @@
     <div class="flex flex-col" style="gap: 1.5rem;">
 
       <!-- <h1 style="margin-bottom: 0em;"> -->
-      <h1>
+      <div class="font-extrabold text-4xl">
         {{ .Params.title }}
-      </h1>
+      </div>
 
       <div>
         {{ range .Params.introduction }}
@@ -151,16 +151,16 @@
 
       <!-- education -->
       <!-- <h2 style="margin-top: 0em;"> -->
-      <h2>
-        Education
-      </h2>
-      <div class="flex flex-col" style="gap: 2rem;">
+      <div class="font-extrabold text-2xl">
+        Education Experience
+      </div>
+      <div class="flex flex-col gap-2">
         {{ range .Params.education }}
         <div class="flex-1">
           {{ .school }}
 
-          <div class="text-sm font-light text-gray-500" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
-            {{ .degree }}
+          <div class="text-sm font-light text-gray-500">
+            {{ .degree }}, {{ .time }}
           </div>
 
           {{ if .rank }}
@@ -195,20 +195,22 @@
           {{ end }}
 
           {{ if .work }}
-          <div class="flex flex-row" style="gap: 0.25rem;">
+          <div class="flex flex-row flex-wrap">
             <div class="text-gray-500">
-              Work:
+              Research:&nbsp;
             </div>
+            <div>
             {{ .work }}
+            </div>
           </div>
           {{ end }}
 
-          <div class="flex flex-row" style="gap: 0.25rem;">
-            <div class="text-gray-500">
-              Time:
-            </div>
-            {{ .time }}
-          </div>
+          <!-- <div class="flex flex-row" style="gap: 0.25rem;"> -->
+          <!--   <div class="text-gray-500"> -->
+          <!--     Time: -->
+          <!--   </div> -->
+          <!--   {{ .time }} -->
+          <!-- </div> -->
 
         </div>
         {{ end }}
@@ -217,9 +219,9 @@
       <!-- practice -->
       <!-- <h2 style="margin-top: 0em;"> -->
       {{ if .Params.practice }}
-      <h2>
-        Work
-      </h2>
+      <div class="font-extrabold text-2xl">
+        Internship
+      </div>
       <div class="flex flex-col" style="gap: 2rem;">
         {{ range .Params.practice }}
         <div class="flex-1">
@@ -256,10 +258,10 @@
       {{ end }}
 
       {{ if eq $flag true}}
-      <h2>
+      <div class="font-extrabold text-2xl">
         Publications
-      </h2>
-      <div class="flex flex-col" style="gap: 2rem;">
+      </div>
+      <div class="flex flex-col">
         {{ range $publications }}
           {{- partial "paper-card.html" . -}}
         {{ end }}
@@ -268,9 +270,9 @@
 
       <!-- award -->
       {{ if .Params.award }}
-      <h2>
+      <div class="font-extrabold text-2xl">
         Award
-      </h2>
+      </div>
       <div class="flex flex-col" style="gap: 2rem;">
         {{ range .Params.award }}
         <div class="flex-1">

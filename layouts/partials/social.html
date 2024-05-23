@@ -17,6 +17,20 @@
       {{ end }}
       {{ range .Site.Params.homepage.social.icons }}
 
+      {{ if eq .website "logo"}}
+      <li>
+        <a
+          href="{{ .url }}"
+          target="_blank"
+          rel="noopener"
+          aria-label="logo"
+          class="p-1 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <img height="24" width="24" src="{{ .src }}" />
+        </a>
+      </li>
+      {{ end }}
+
       {{ if eq .website "twitter" }}
       <li>
         <a
