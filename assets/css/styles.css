@@ -69,28 +69,35 @@ main {
   background-color: rgba(17, 24, 39, 0.75);
 } */
 
-#swiper-mask {
-  z-index: 5;
-  background-image: linear-gradient(180deg, rgba(187, 214, 254, 0.75) 0%, transparent 25% 75%, rgb(99, 158, 241) 100% );
-}
-#swiper-mask:is(.dark *) {
-  background-image: linear-gradient(180deg, rgba(17, 24, 39, 0.5) 0%, transparent 25% 75%, rgb(31, 41, 55) 100%);
-}
-.about-section {
-  background-color: rgb(99, 158, 241);
-  color: white
-}
-.about-section:is(.dark *) {
-  background-color: unset;
-}
-
 .swiper-slide img {
   width: 100%;
   aspect-ratio: 16 / 9;
-  min-height: 50vh;
-  max-height: 80vh;
+  min-height: 60vh;
+  max-height: 75vh;
   object-fit: cover;
 }
+#swiper-mask {
+  z-index: 5;
+  background-image: linear-gradient(180deg, rgba(174, 212, 254, 1) 0%, transparent 10% 50%, rgb(23, 37, 84) 100%);
+}
+#swiper-mask:is(.dark *) {
+  background-image: linear-gradient(180deg, transparent 0% 50%, rgb(31, 41, 55) 100%);
+}
+.about-section {
+  /* background-image: linear-gradient(180deg, rgb(23, 37, 84) 0%, rgb(27, 65, 193) 100%); */
+  padding-top: -10vh;
+  background-image: radial-gradient(120% 160% at 50% 180%, rgb(27, 65, 193) 0%, rgb(23, 37, 84) 100%);;
+  /* background-color: rgb(99, 158, 241); */
+  color: white;
+}
+/* Rectangle 2 */
+
+
+.about-section:is(.dark *) {
+  background-image: unset;
+  background-color: rgb(31, 41, 55);
+}
+
 .header {
   transition: background-color 200ms ease-out;
 }
@@ -106,16 +113,16 @@ main {
   background-color: rgba(17, 24, 39, 0.75) !important;
 }
 .title-container {
-  margin-bottom: 4vh;
+  margin-bottom: 6vh;
   color: white;
 }
 .title-container .alt-logo {
-  height: 64px;
+  /* height: 64px; */
   text-shadow: 0 4 12px rgba(0, 0, 0, 0.1);
   margin: 0 0 -4px -11px;
 }
 .title-container .team-logo {
-  height: 80px;
+  /* height: 80px; */
   text-shadow: 0 4 12px rgba(0, 0, 0, 0.1);
   margin: -8px 0 -8px -14px;
 }

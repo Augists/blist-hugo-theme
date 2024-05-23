@@ -8,7 +8,7 @@
             <img src="{{ .src }}" alt="{{ .Site.Title }}" class="h-8 max-w-full" />
           </a>
           {{ end }}
-          <div class="flex flex-row">
+          <div class="title-group flex flex-row">
             {{ if .Site.Params.group }}
             <a href="{{ .Site.Params.groupUrl }}">
               {{ .Site.Params.group }}
@@ -153,6 +153,7 @@
         nav.classList.remove("menu-expanded");
       }
       nav.style.boxShadow = `0 0 24px rgba(0, 0, 0, ${clampedScroll * clampedScroll * clampedScroll * 0.1})` // cubic, less shadow when scrolling is small.
+      console.log(nav.style.backgroundColor);
       if (nav.querySelector("header:is(.dark *)") !== null) {
         nav.style.backgroundColor = `rgba(17, 24, 39, ${0.6 * clampedScroll})`
       } else {
@@ -163,8 +164,10 @@
       // navContent.style.paddingBottom=`${clampedScroll * 0.75 + (1 - clampedScroll) * 3}rem`
       nav.style.minHeight = `${clampedScroll * 4 + (1 - clampedScroll) * 8}rem`
     }
-    window.addEventListener("scroll", (e) => refreshTopBar())
-
+    // window.addEventListener("scroll", (e) => refreshTopBar())
+    // make sure the refreshing is the only event listener, easier to remove
+    if (window.onscroll != (() => {}))
+      window.onscroll = refreshTopBar;
     function toggleMenu() {
       if (mobileMenu.classList.contains('hidden')) {
         nav.classList.add("menu-expanded");
@@ -188,7 +191,6 @@
         document.documentElement.classList.add('dark')
         localStorage.setItem('darkmode', 'dark')
       }
-      refreshTopBar();
     }
     const darkmode = document.querySelector('.toggle-dark-mode');
     if (darkmode) {

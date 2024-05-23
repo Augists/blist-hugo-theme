@@ -2,18 +2,18 @@
 {{ $swiperCss := resources.Get "css/swiper-bundle.min.css" }}
 {{ $swiper := resources.Get "js/swiper-bundle.min.js" }}
 <section class="bg-white dark:bg-gray-800 ">
-  <div class="w-full relative" style="margin-top: -8em">
+  <div class="swiper-container w-full relative z-0" style="margin-top: -3.5em; ">
     <div class="swiper w-full">
       <div id="swiper-mask" class="w-full h-full absolute flex flex-col justify-end">
 
         <!-- <h1 class="text-4xl font-bold" style="margin-bottom: 0.5rem;">{{ .Site.Params.introTitle | safeHTML}}</h1> -->
         <div class="title-container container max-w-screen-lg mx-auto px-6">
-          <a class="flex flex-col lg:flex-row items-start lg:items-center gap-6" href="/">
+          <a class="flex flex-col md:flex-row items-start md:items-center gap-6" href="/">
             {{ if .Site.Params.altLogo }}
-            <img class="alt-logo text-2xl" src="{{ .Site.Params.altLogo }}">
+            <img class="alt-logo h-12 md:h-16" src="{{ .Site.Params.altLogo }}">
             {{ end }}
             {{ if .Site.Params.teamLogo }}
-            <img class="team-logo text-2xl" src="{{ .Site.Params.teamLogo }}">
+            <img class="team-logo h-16 md:h-20" src="{{ .Site.Params.teamLogo }}">
             {{ end }}
           </a>
           
@@ -34,9 +34,9 @@
     <!-- <div class="swiper-pagination"></div> -->
     </div>
   </div>
-  <div class="about-section pb-6 mb-6">
+  <div class="about-section pb-6 mb-6 bg-blue-950 overflow-visible">
 
-    <div class="container max-w-screen-lg mx-auto px-6 py-12 flex flex-col gap-4">
+    <div class="container max-w-screen-lg mx-auto px-6 pb-12 flex flex-col gap-4">
       <!-- <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" /> -->
 
       <p class="font-light text-lg">{{ .Site.Params.introSubtitle | safeHTML}}</p>
@@ -63,7 +63,7 @@
     keyboard: true,
     //自动切换
     autoplay: {
-      delay: 5000,
+      delay: 10000,
     },
     autoHeight: true,
     //懒加载
@@ -73,13 +73,26 @@
     rewind: true,
     loop: true
   });
+  // set header to be dark
+  window.onscroll = () => {};
 </script>
 <style>
   /* use inline style to make */
-.header.menu-expanded .logo {
-  transition: color 200ms ease-out;
+.header, .header.menu-expanded {
+  min-height: 4rem;
+  /* color: white !important; */
+  background-color: rgba(147, 197, 253, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  /* box-shadow: 0 0 24px rgba(0, 0, 0, 0.1) !important; */
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-.header:not(.menu-expanded) .logo {
-  color: transparent;
+.header:is(.dark *), .header.menu-expanded:is(.dark *) {
+  background-color: rgba(31, 41, 55, 0.75) !important;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.header .title-group {
+  display: none;
 }
 </style>
