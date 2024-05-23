@@ -1,6 +1,6 @@
-<div id="header" class="header bg-transparent fixed z-10 w-full min-h-32 flex">
+<div id="header" class="header bg-transparent fixed z-10 w-full min-h-32 flex items-center">
   <header class="w-full lg:max-w-5xl flex mx-auto items-center relative">
-    <div class="header-items w-full flex gap-4 px-6 my-4 justify-between items-start relative">
+    <div class="header-items w-full flex gap-4 px-6 my-4 justify-between items-start sm:items-center relative">
       <div class="logo capitalize text-2xl flex-left flex-shrink-0">
         <div class="flex gap-2 items-center">
           {{ range .Site.Params.logo }}
@@ -8,8 +8,10 @@
             <img src="{{ .src }}" alt="{{ .Site.Title }}" class="h-8 max-w-full" />
           </a>
           {{ end }}
-          <img class="inline dark:hidden" height="32" width="130" src="{{ .Site.Params.teamLogo }}">
-          <img class="hidden dark:inline" height="32" width="130" src="{{ .Site.Params.teamLogoDark }}">
+          <a href="/" class="title-group">
+            <img class="inline dark:hidden" height="32" width="130" src="{{ .Site.Params.teamLogo }}">
+            <img class="hidden dark:inline" height="32" width="130" src="{{ .Site.Params.teamLogoDark }}">
+          </a>
           <!-- <div class="flex flex-row"> -->
           <!--   <a href="{{ .Site.Home.Permalink }}"> -->
           <!--     {{ .Site.Title }} -->

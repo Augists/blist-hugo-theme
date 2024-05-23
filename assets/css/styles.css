@@ -88,9 +88,12 @@ main {
   padding-top: -10vh;
   background-image: radial-gradient(120% 160% at 50% 180%, rgb(27, 65, 193) 0%, rgb(23, 37, 84) 100%);;
   /* background-color: rgb(99, 158, 241); */
-  color: white;
+  /* color: white; */
 }
 /* Rectangle 2 */
+.about-section h2 {
+  color: white;
+}
 
 
 .about-section:is(.dark *) {

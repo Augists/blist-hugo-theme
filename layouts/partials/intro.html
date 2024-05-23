@@ -2,7 +2,7 @@
 {{ $swiperCss := resources.Get "css/swiper-bundle.min.css" }}
 {{ $swiper := resources.Get "js/swiper-bundle.min.js" }}
 <section class="bg-white dark:bg-gray-800 ">
-  <div class="swiper-container w-full relative z-0" style="margin-top: -3.5em; ">
+  <div class="swiper-container w-full relative z-0" style="margin-top: -3.2em; ">
     <div class="swiper w-full">
       <div id="swiper-mask" class="w-full h-full absolute flex flex-col justify-end">
 
@@ -10,14 +10,14 @@
         <div class="title-container container max-w-screen-lg mx-auto px-6">
           <a class="flex flex-col md:flex-row items-start md:items-center gap-6" href="/">
             {{ if .Site.Params.altLogo }}
-            <img class="alt-logo h-12 md:h-16" src="{{ .Site.Params.altLogo }}">
+            <img class="alt-logo h-16" src="{{ .Site.Params.altLogoDark }}">
             {{ end }}
-            {{ if .Site.Params.teamLogo }}
-            <img class="team-logo h-16 md:h-20" src="{{ .Site.Params.teamLogo }}">
-            {{ end }}
+            <!-- {{ if .Site.Params.teamLogo }}
+            <img class="team-logo h-16 md:h-20" src="{{ .Site.Params.teamLogoDark }}">
+            {{ end }} -->
           </a>
-          <div class="text-8xl">
-          {{ .Site.Params.introTitle }}
+          <div class="text-7xl mt-6 mb-2">
+          {{ .Site.Params.introTitle | safeHTML }}
           </div>
           
         </div>
@@ -36,12 +36,12 @@
     <!-- <div class="swiper-pagination"></div> -->
     </div>
   </div>
-  <div class="about-section pb-6 mb-6 bg-blue-950 overflow-visible">
+  <div class="about-section pb-6 mb-6 bg-blue-950 text-blue-50 overflow-visible">
 
     <div class="container max-w-screen-lg mx-auto px-6 pb-12 flex flex-col gap-4">
       <!-- <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" /> -->
 
-      <p class="text-2xl">{{ .Site.Params.introSubtitle | safeHTML}}</p>
+      <h2 class="text-2xl">{{ .Site.Params.introSubtitle | safeHTML}}</h2>
 
       {{ range .Site.Params.about }}
       <p>{{ .content }}</p>
@@ -93,8 +93,5 @@
   background-color: rgba(31, 41, 55, 0.75) !important;
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.1) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-}
-.header .title-group {
-  display: none;
 }
 </style>
