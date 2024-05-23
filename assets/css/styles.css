@@ -196,3 +196,7 @@ main {
   text-underline-offset: 4px;
   text-decoration-color: #d4d4d8;
 }
+
+.paperlist .paper-title {
+  font-weight: bolder;
+}

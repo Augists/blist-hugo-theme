@@ -5,9 +5,9 @@
         {{ .Params.title }}
       </h1>
 
-      <div class="flex flex-row">
+      <div class="flex flex-row flex-wrap">
         <b>Author: </b>&nbsp;
-        <div class="flex flex-row" style="gap: 0rem;">
+        <div class="flex flex-row flex-wrap" style="gap: 0rem;">
         {{ $length := 0 }}
         {{ range .Params.paper.author }}
           {{ $length = add $length 1 }}
@@ -64,22 +64,27 @@
     <!--   </div> -->
     <!-- </div> -->
 
+    {{ if .Params.bibtex }}
     <div>
       <h2>
-        BibTex
+        BibTeX
       </h2>
-      <pre><code>{{ .Params.bibtex }}</code></pre>
+      <pre class="bg-slate-100 text-black dark:bg-gray-900 dark:text-white"><code >{{ .Params.bibtex }}</code></pre>
+      {{ if .Params.doi }}
       <div class="m-0 text-xs font-light text-zinc-400 dark:text-zinc-600 italic" style="font-size: 0.75rem; line-height: 1rem;">
         Research Collection: {{ .Params.doi }}
       </div>
+      {{ end }}
     </div>
+    {{ end }}
 
     {{ if .Params.video }}
-    <div>
-      <h2>
-        Video
-      </h2>
-      <iframe class="mx-auto" width="720" height="405" src="{{ .Params.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <!-- 16:9 ratio -->
+    <h2>
+      Video
+    </h2>
+    <div class="relative w-full overflow-hidden" style="padding-top: 56.25%">
+      <iframe class="absolute top-0 left-0 bottom-0 right-0 w-full h-full border-none"   src="{{ .Params.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     {{ end }}
 
@@ -87,7 +92,7 @@
       Resources
     </h2>
 
-    <div class="flex flex-row justify-around">
+    <div class="flex flex-row gap-6 flex-wrap">
       {{ if .Params.pdf }}
       <span class="inline-block">
         <a class="flex flex-row" style="text-decoration-line: none; gap: 0.5rem;" href={{ .Params.pdf }}>

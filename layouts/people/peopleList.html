@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap" style="gap: 2rem;">
+  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-8">
     <div class="text-4xl font-semibold">
       {{ .Params.title }}
     </div>
@@ -9,7 +9,7 @@
     <div class="text-2xl font-semibold">
       {{ .Params.mentor }}
     </div>
-    <div class="flex flex-wrap justify-around gap-12">
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
     {{ range (where (where .Site.RegularPages.ByDate "Type" "people") "Layout" "mentor") }}
       {{- partial "people-card.html" . -}}
     {{ end }}
@@ -21,7 +21,7 @@
 
     {{ end }}
 
-    <div class="flex flex-wrap justify-around gap-12">
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
     {{ range (where (where .Site.RegularPages.ByDate "Type" "people") "Layout" "people") }}
       {{- partial "people-card.html" . -}}
     {{ end }}
@@ -30,9 +30,9 @@
     <div class="text-2xl font-semibold mb-4 mt-4">
       {{ .Params.alumni_title }}
     </div>
-    <div class="flex flex-row justify-around flex-wrap gap-12">
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
       {{ range .Params.Alumni }}
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col sm:items-center">
         <div class="text-xl font-semibold">
           {{ .name }}
         </div>

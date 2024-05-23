@@ -1,13 +1,13 @@
 <div class="p-0 flex flex-col">
   <div class="mb-4 flex flex-col flex-wrap">
     <div class="p-0">
-      <a class="flex flex-row flex-wrap" style="text-decoration-line: none; gap: 0.25rem;" href="{{ .Permalink }}">
-        <div class="text-xl">{{ .Params.title }}</div>
+      <a style="text-decoration-line: none;" href="{{ .Permalink }}">
+        <div class="paper-title text-xl">{{ .Params.title }}</div>
       </a>
     </div>
 
     <h5 class="text-gray-500">
-      <div class="flex flex-row" style="gap: 0rem;">
+      <div class="flex flex-row flex-wrap" style="gap: 0rem;">
         {{ $length := 0 }}
         {{ range .Params.paper.author }}
           {{ $length = add $length 1 }}
@@ -49,7 +49,7 @@
       {{ end }}
     </h5>
 
-    <div class="flex flex-row mt-0.5" style="gap: 2rem;">
+    <div class="flex flex-row flex-wrap mt-0.5 gap-x-4 gap-y-2">
       {{ if .Params.pdf }}
       <span class="inline-block">
         <a class="flex flex-row" style="text-decoration-line: none; gap: 0.5rem;" href={{ .Params.pdf }}>

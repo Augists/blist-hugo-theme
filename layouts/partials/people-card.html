@@ -1,20 +1,16 @@
-<div class="p-0 flex flex-col justify-center items-center">
-  <a href="{{ .Permalink }}">
+<div class="p-0 flex flex-row sm:flex-col sm:justify-center items-center w-full gap-4">
+  <a  href="{{ .Permalink }}">
   {{ if .Params.image }}
-  <div class="relative">
-    <img src="{{ .Params.image }}" alt="{{ .Params.title }}" class="m-0 mb-4 rounded-full shadow-sm h-52 object-cover" />
-  </div>
+    <img src="{{ .Params.image }}"        alt="{{ .Params.title }}" class="m-0 rounded-full shadow-sm h-24 w-24 sm:h-44 sm:w-44 object-cover" />
   {{ else }}
-  <div class="relative">
-    <img src="{{ .Site.Params.favicon }}" alt="{{ .Params.title }}" class="m-0 mb-4 rounded-full shadow-sm w-full h-52 object-cover" />
-  </div>
+    <img src="{{ .Site.Params.favicon }}" alt="{{ .Params.title }}" class="m-0 rounded-full shadow-sm h-24 w-24 sm:h-44 sm:w-44 object-cover" />
   {{ end }}
   </a>
 
-  <div class="my-2 flex flex-col flex-wrap items-center">
+  <div class="sm:my-2 flex flex-col flex-wrap sm:items-center">
     <div class="p-0">
       <a href="{{ .Permalink }}">
-        <div class="text-xl font-semibold">{{ .Params.title }}</div>
+        <div class="text-xl font-semibold text-center">{{ .Params.title }}</div>
       </a>
     </div>
 
