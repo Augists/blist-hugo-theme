@@ -7,20 +7,20 @@
       <div id="swiper-mask" class="w-full h-full absolute flex flex-col justify-end">
 
         <!-- <h1 class="text-4xl font-bold" style="margin-bottom: 0.5rem;">{{ .Site.Params.introTitle | safeHTML}}</h1> -->
-        <div class="title-container container max-w-screen-lg mx-auto px-6">
-          <a class="flex flex-col md:flex-row items-start md:items-center gap-6" href="/">
-            {{ if .Site.Params.altLogo }}
-            <img class="alt-logo h-12 sm:h-14 md:h-16" src="{{ .Site.Params.altLogoDark }}">
-            {{ end }}
-            <!-- {{ if .Site.Params.teamLogo }}
-            <img class="team-logo h-16 md:h-20" src="{{ .Site.Params.teamLogoDark }}">
-            {{ end }} -->
-          </a>
-          <h1 class="text-5xl sm:text-6xl md:text-7xl mt-6 mb-2">
-          {{ .Site.Params.introTitle | safeHTML }}
-          </h1>
-          
-        </div>
+        <!-- <div class="title-container container max-w-screen-lg mx-auto px-6"> -->
+        <!--   <a class="flex flex-col md:flex-row items-start md:items-center gap-6" href="/"> -->
+        <!--     {{ if .Site.Params.altLogo }} -->
+        <!--     <img class="alt-logo h-12 sm:h-14 md:h-16" src="{{ .Site.Params.altLogoDark }}"> -->
+        <!--     {{ end }} -->
+        <!--     <!-- {{ if .Site.Params.teamLogo }} -->
+        <!--     <img class="team-logo h-16 md:h-20" src="{{ .Site.Params.teamLogoDark }}"> -->
+        <!--     {{ end }} --> -->
+        <!--   </a> -->
+        <!--   <h1 class="text-5xl sm:text-6xl md:text-7xl mt-6 mb-2"> -->
+        <!--   {{ .Site.Params.introTitle | safeHTML }} -->
+        <!--   </h1> -->
+        <!--    -->
+        <!-- </div> -->
       </div>
       <div class="swiper-wrapper relative">
         {{ range .Site.Params.introImages }}
@@ -41,7 +41,7 @@
     <div class="container max-w-screen-lg mx-auto px-6 pb-12 flex flex-col gap-4">
       <!-- <img class="rounded-lg shadow-sm" src="{{ .Site.Params.introPhoto }}" alt="{{ .Site.Title }}" /> -->
 
-      <h2 class="text-sl sm:text-2xl mb-8">{{ .Site.Params.introSubtitle | safeHTML}}</h2>
+      <h2 class="text-sl sm:text-xl mb-4">{{ .Site.Params.introSubtitle | safeHTML}}</h2>
 
       {{ range .Site.Params.about }}
       <p>{{ .content }}</p>

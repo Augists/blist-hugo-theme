@@ -5,7 +5,8 @@
         <div class="flex gap-2 items-center">
           {{ range .Site.Params.logo }}
           <a href="{{ .url }}">
-            <img src="{{ .src }}" alt="{{ .Site.Title }}" class="h-8 max-w-full" />
+            <img src="{{ .light }}" alt="{{ .Site.Title }}" class="inline dark:hidden h-8 max-w-full" />
+            <img src="{{ .dark }}" alt="{{ .Site.Title }}" class="hidden dark:inline h-8 max-w-full" />
           </a>
           {{ end }}
           <a href="/" class="title-group">
