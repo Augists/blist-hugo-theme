@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col sm:flex-row flex-auto prose prose-zinc dark:prose-dark dark:prose-invert gap-20">
+  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col sm:flex-row flex-auto prose prose-zinc dark:prose-dark dark:prose-invert gap-20 text-lg">
 
     <!-- left -->
     <div class="flex flex-row sm:flex-col items-center prose prose-zinc dark:prose-dark dark:prose-invert max-w-none gap-4 sm:gap-6">
@@ -148,6 +148,24 @@
         {{ end }}
       </div>
 
+      <div class="font-extrabold text-2xl">
+        Research Interest
+      </div>
+      <div class="flex flex-col gap-2">
+        {{ range .Params.research }}
+        <div class="flex-1">
+          <div class="flex flex-row flex-wrap">
+            <div class="text-gray-500">
+              Area:&nbsp;
+            </div>
+            <div>
+            {{ .interest }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+
       <!-- education -->
       <!-- <h2 style="margin-top: 0em;"> -->
       <div class="font-extrabold text-2xl">
@@ -193,7 +211,7 @@
           </div>
           {{ end }}
 
-          {{ if .work }}
+<!--           {{ if .work }}
           <div class="flex flex-row flex-wrap">
             <div class="text-gray-500">
               Research:&nbsp;
@@ -202,7 +220,7 @@
             {{ .work }}
             </div>
           </div>
-          {{ end }}
+          {{ end }} -->
 
           <!-- <div class="flex flex-row" style="gap: 0.25rem;"> -->
           <!--   <div class="text-gray-500"> -->
