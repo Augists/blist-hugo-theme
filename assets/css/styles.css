@@ -78,7 +78,8 @@ main {
 }
 #swiper-mask {
   z-index: 5;
-  background-image: linear-gradient(180deg, rgba(174, 212, 254, 1) 0%, transparent 10% 50%, rgb(23, 37, 84) 100%);
+  background-image: linear-gradient(180deg, transparent 0% 50%, rgb(23, 37, 84) 100%);
+  /* background-image: linear-gradient(180deg, rgba(174, 212, 254, 1) 0%, transparent 10% 50%, rgb(23, 37, 84) 100%); */
 }
 #swiper-mask:is(.dark *) {
   background-image: linear-gradient(180deg, transparent 0% 50%, rgb(31, 41, 55) 100%);
