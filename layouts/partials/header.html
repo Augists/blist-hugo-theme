@@ -4,7 +4,7 @@
       <div class="logo capitalize text-2xl flex-left flex-shrink-0">
         <div class="flex gap-2 items-center">
           {{ range .Site.Params.logo }}
-          <a href="{{ .url }}">
+          <a href="{{ .url }}" class="title-group">
             <img src="{{ .light }}" alt="{{ .Site.Title }}" class="inline dark:hidden h-8 max-w-full" />
             <img src="{{ .dark }}" alt="{{ .Site.Title }}" class="hidden dark:inline h-8 max-w-full" />
           </a>
