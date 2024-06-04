@@ -155,12 +155,15 @@
         {{ range .Params.research }}
         <div class="flex-1">
           <div class="flex flex-row flex-wrap">
-            <div class="text-gray-500">
-              Area:&nbsp;
-            </div>
+            {{ if .time }}
             <div>
-            {{ .interest }}
+              <span class="text-gray-500">Interest in {{ .time }}:&nbsp;</span>{{ .interest }}
             </div>
+            {{ else }}
+            <div>
+              <span class="text-gray-500">Interest:&nbsp;</span>{{ .interest }}
+            </div>
+            {{ end }}
           </div>
         </div>
         {{ end }}

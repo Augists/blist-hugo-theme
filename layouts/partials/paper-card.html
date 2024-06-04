@@ -2,11 +2,11 @@
   <div class="mb-4 flex flex-col flex-wrap">
     <div class="p-0">
       <a style="text-decoration-line: none;" href="{{ .Permalink }}">
-        <div class="paper-title text-xl">{{ .Params.title }}</div>
+        <div class="paper-title text-lg">{{ .Params.title }}</div>
       </a>
     </div>
 
-    <h5 class="text-gray-500">
+    <h5 class="text-gray-500 text-base">
       <div class="flex flex-row flex-wrap" style="gap: 0rem;">
         {{ $length := 0 }}
         {{ range .Params.paper.author }}
@@ -38,7 +38,7 @@
       </div>
     </h5>
 
-    <h5 class="italic text-gray-500 flex flex-row" style="align-items: center; gap: 0.25rem;">
+    <h5 class="italic text-gray-500 flex flex-row text-base" style="align-items: center; gap: 0.25rem;">
       <div>
         {{ .Params.publisher }}
       </div>
