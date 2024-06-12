@@ -166,16 +166,16 @@
         {{ range .Params.education }}
         <div class="flex-1">
           {{ .school }}
-          <div class="text-lg font-light text-gray-500">
+          <div class="text-base font-light text-gray-500 italic">
           {{ .major }}
           </div>
 
-          <div class="text-lg font-light text-gray-500">
+          <div class="text-base font-light text-gray-500 italic">
             {{ .degree }}, {{ .time }}
           </div>
 
           {{ if .rank }}
-          <div class="flex flex-row" style="gap: 1rem;">
+          <div class="flex flex-row text-base italic" style="gap: 1rem;">
 
             <div class="flex flex-row" style="gap: 0.25rem;">
               <div class="text-gray-500">
@@ -238,11 +238,11 @@
         <div class="flex-1">
           {{ .enterprise }}
 
-          <div class="text-lg font-light text-gray-500" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
+          <div class="text-base italic font-light text-gray-500" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
             {{ .work }}
           </div>
 
-          <div class="flex flex-row" style="gap: 0.25rem;">
+          <div class="flex flex-row text-base italic" style="gap: 0.25rem;">
             <div class="text-gray-500">
               Time:
             </div>
