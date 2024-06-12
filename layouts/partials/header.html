@@ -2,13 +2,14 @@
   <header class="w-full lg:max-w-5xl flex mx-auto items-center relative">
     <div class="header-items w-full flex gap-4 px-6 my-4 justify-between items-center relative">
       <div class="logo capitalize text-2xl flex-left flex-shrink-0">
-        <div class="flex gap-2 items-center">
+        <div class="flex gap-2">
           {{ range .Site.Params.logo }}
           <a href="{{ .url }}" class="title-group">
             <img src="{{ .light }}" alt="{{ .Site.Title }}" class="inline dark:hidden h-8 max-w-full" />
             <img src="{{ .dark }}" alt="{{ .Site.Title }}" class="hidden dark:inline h-8 max-w-full" />
           </a>
           {{ end }}
+          <div>|</div>
           <a href="/" class="title-group">
             <img class="inline dark:hidden" height="32" width="130" src="{{ .Site.Params.teamLogo }}">
             <img class="hidden dark:inline" height="32" width="130" src="{{ .Site.Params.teamLogoDark }}">
@@ -30,6 +31,7 @@
         </button>
         <ul class="mobile-menu md:relative z-10 pl-6 py-6 md:p-0 top-full left-0 w-full flex-grow hidden md:flex md:flex-wrap flex-col md:flex-row md:ml-5 justify-center md:justify-end items-end md:items-center gap-6">
 
+          {{ $currentPage := .CurrentSection.Name }}
           {{ range .Site.Menus.main }}
             {{ if eq .Name "Join us" }}
             <li>
@@ -39,8 +41,10 @@
                 </button>
               </a>
             </li>
+            {{ else if eq .Name $currentPage }}
+            <li><a class="text-highlight-light transition-all ease-in-out decoration-2 underline-offset-4 hover:underline decoration-highlight-dark" style="color: #5889ed;" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
             {{ else }}
-            <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+            <li><a class="text-highlight-light transition-all ease-in-out decoration-2 underline-offset-4 hover:underline decoration-highlight-dark" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
             {{ end }}
           {{ end }}
 

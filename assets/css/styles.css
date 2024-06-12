@@ -201,3 +201,15 @@ main {
 .paperlist .paper-title {
   font-weight: bolder;
 }
+
+.decoration-highlight-dark {
+  text-decoration-color: #5889ed;
+  /* text-decoration-color: #172554; */
+  /* text-decoration-color: #ff7e79; */
+}
+
+.text-highlight-light:hover {
+  color: #5889ed;
+  /* color: #172554; */
+  /* color: #ff7e79; */
+}
