@@ -153,9 +153,13 @@
         Recent Papers
       </div>
       <div class="flex flex-col">
-        {{ range $k, $v := (where .Site.RegularPages.ByDate.Reverse "Type" "paper") }}
-          {{ if lt $k 5 }}
-            {{- partial "paper-card.html" . -}}
+        {{ $i := 0 }}
+        {{ range $v := (where .Site.RegularPages.ByDate.Reverse "Type" "paper") }}
+          {{ if $v.Params.Top }}
+            {{ if lt $i 5 }}
+              {{- partial "paper-card.html" . -}}
+              {{ $i = add $i 1 }}
+            {{ end }}
           {{ end }}
         {{ end }}
         <a href="/papers">Full List</a>
