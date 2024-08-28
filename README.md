@@ -39,13 +39,13 @@ Minimum Hugo Version: **0.110.0**
 Run from the root of your Hugo site:
 
 ```sh
-git clone https://github.com/apvarun/blist-hugo-theme.git themes/blist
+git clone https://github.com/Augists/blist-hugo-theme.git themes/blist
 ```
 
 Alternatively, you can include this repository as a [git submodule](https://git-scm.com/docs/gitsubmodules). This makes it easier to update this theme if you have your Hugo site in git as well:
 
 ```sh
-git submodule add https://github.com/apvarun/blist-hugo-theme.git themes/blist
+git submodule add https://github.com/Augists/blist-hugo-theme.git themes/blist
 ```
 
 ## Preview the theme with example content
