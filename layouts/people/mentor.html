@@ -1,8 +1,8 @@
 {{ define "main" }}
-  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col sm:flex-row flex-auto prose prose-zinc dark:prose-dark dark:prose-invert gap-20 text-lg">
+  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col sm:flex-row flex-auto prose prose-zinc dark:prose-invert gap-20 text-lg dark:text-white">
 
     <!-- left -->
-    <div class="flex flex-row sm:flex-col w-full items-center prose prose-zinc dark:prose-dark dark:prose-invert max-w-none gap-4 sm:gap-6">
+    <div class="flex flex-row sm:flex-col w-full items-center prose prose-zinc dark:prose-invert max-w-none gap-4 sm:gap-6">
 
       <img class="rounded-full my-0 sm:max-w-40 max-w-32 flex-shrink aspect-square object-cover" src="{{ .Params.image }}" alt="{{ .Params.title }}"/>
       <div class="flex flex-col flex-grow sm:items-center sm:mx-auto ">
@@ -10,7 +10,7 @@
         {{ .Params.name_en }}
         </div>
 
-        <div class="text-sm font-light italic text-gray-500">
+        <div class="text-sm font-light italic text-gray-500 dark:text-gray-200">
         {{ .Params.degree }}
         </div>
 
@@ -169,7 +169,7 @@
       <div class="font-extrabold text-2xl">
         Service
       </div>
-      <div class="flex flex-col text-lg">
+      <div class="flex flex-col text-lg dark:text-gray-200">
         {{ range .Params.service }}
         <div class="mb-4 flex-1">
           <div class="flex flex-col">
@@ -191,14 +191,14 @@
       <div class="font-extrabold text-2xl">
         Work
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 dark:text-gray-200">
         {{ range .Params.work }}
         <div style="min-width: 16rem;">
           <div class="flex flex-col" style="gap: 0.5rem;">
             {{ .school }}
           </div>
 
-          <div class="text-lg italic text-gray-500" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
+          <div class="text-lg italic text-gray-500 dark:text-gray-200" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
             {{ .degree }}, {{ .time }}
           </div>
         </div>
@@ -210,14 +210,14 @@
       <div class="font-extrabold text-2xl">
         Education
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 dark:text-gray-200">
         {{ range .Params.education }}
         <div style="min-width: 16rem;">
           <div class="flex flex-col" style="gap: 0.5rem;">
             {{ .school }}
           </div>
 
-          <div class="text-lg italic text-gray-500" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
+          <div class="text-lg italic text-gray-500 dark:text-gray-200" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
             {{ .degree }}, {{ .time }}
           </div>
 
@@ -232,13 +232,13 @@
       <div class="font-extrabold text-2xl">
         Honor
       </div>
-      <div class="flex flex-col">
+      <div class="flex flex-col dark:text-gray-200">
         {{ range .Params.honor }}
           <div class="flex flex-row mb-2">
             <div>
               {{ .content }}，
             </div>
-            <div class="italic text-gray-500">
+            <div class="italic text-gray-500 dark:text-gray-200">
               {{ .time }}
             </div>
           </div>

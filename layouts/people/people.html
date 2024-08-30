@@ -1,8 +1,8 @@
 {{ define "main" }}
-  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col sm:flex-row flex-auto prose prose-zinc dark:prose-dark dark:prose-invert gap-20 text-lg">
+  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col sm:flex-row flex-auto prose prose-zinc dark:prose-invert gap-20 text-lg dark:text-white">
 
     <!-- left -->
-    <div class="flex flex-row sm:flex-col items-center prose prose-zinc dark:prose-dark dark:prose-invert max-w-none gap-4 sm:gap-6">
+    <div class="flex flex-row sm:flex-col items-center prose prose-zinc dark:prose-invert max-w-none gap-4 sm:gap-6">
 
       <img class="rounded-full my-0 sm:max-w-40 max-w-32 flex-shrink aspect-square object-cover" src="{{ .Params.image }}" alt="{{ .Params.title }}"/>
       <div class="flex flex-col flex-grow sm:items-center sm:mx-auto ">
@@ -10,7 +10,7 @@
         {{ .Params.name_en }}
         </div>
 
-        <div class="text-sm font-light italic text-gray-500">
+        <div class="text-sm font-light italic text-gray-500 dark:text-gray-200">
         {{ .Params.degree }}
         </div>
 
@@ -144,14 +144,14 @@
 
       <div>
         {{ range .Params.introduction }}
-        <p>{{ .content }}</p>
+        <p class="dark:text-gray-200">{{ .content }}</p>
         {{ end }}
       </div>
 
       <div class="font-extrabold text-2xl">
         Research Interest
       </div>
-      <ul class="my-0">
+      <ul class="my-0 dark:text-gray-200">
         {{ range .Params.research }}
         <li>{{ .interest }}</li>
         {{ end }}
@@ -162,15 +162,15 @@
       <div class="font-extrabold text-2xl">
         Education Experience
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 dark:text-gray-200">
         {{ range .Params.education }}
         <div class="flex-1">
           {{ .school }}
-          <div class="text-base font-light text-gray-500 italic">
+          <div class="text-base font-light text-gray-500 dark:text-gray-200 italic">
           {{ .major }}
           </div>
 
-          <div class="text-base font-light text-gray-500 italic">
+          <div class="text-base font-light text-gray-500 dark:text-gray-200 italic">
             {{ .degree }}, {{ .time }}
           </div>
 
@@ -178,7 +178,7 @@
           <div class="flex flex-row text-base italic" style="gap: 1rem;">
 
             <div class="flex flex-row" style="gap: 0.25rem;">
-              <div class="text-gray-500">
+              <div class="text-gray-500 dark:text-gray-200">
                 Rank:
               </div>
               {{ .rank }}
@@ -186,7 +186,7 @@
 
             {{ if .gpa }}
             <div class="flex flex-row" style="gap: 0.25rem;">
-              <div class="text-gray-500">
+              <div class="text-gray-500 dark:text-gray-200">
                 GPA:
               </div>
               {{ .gpa }}
@@ -195,7 +195,7 @@
 
             {{ if .averagescore }}
             <div class="flex flex-row" style="gap: 0.25rem;">
-              <div class="text-gray-500">
+              <div class="text-gray-500 dark:text-gray-200">
                 Average Score:
               </div>
               {{ .averagescore }}
@@ -233,12 +233,12 @@
       <div class="font-extrabold text-2xl">
         Internship
       </div>
-      <div class="flex flex-col" style="gap: 2rem;">
+      <div class="flex flex-col dark:text-gray-200" style="gap: 2rem;">
         {{ range .Params.practice }}
         <div class="flex-1">
           {{ .enterprise }}
 
-          <div class="text-base italic font-light text-gray-500" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
+          <div class="text-base italic font-light text-gray-500 dark:text-gray-200" style="margin-top: 0.125rem; margin-bottom: 0.125rem;">
             {{ .work }}
           </div>
 
@@ -272,7 +272,7 @@
       <div class="font-extrabold text-2xl">
         Publications
       </div>
-      <div class="flex flex-col">
+      <div class="flex flex-col dark:text-gray-200">
         {{ range $publications }}
           {{- partial "paper-card.html" . -}}
         {{ end }}
@@ -284,7 +284,7 @@
       <div class="font-extrabold text-2xl">
         Award
       </div>
-      <div class="flex flex-col" style="gap: 2rem;">
+      <div class="flex flex-col dark:text-gray-200" style="gap: 2rem;">
         {{ range .Params.award }}
         <div class="flex-1">
           <div class="flex flex-row" style="gap: 0.25rem;">

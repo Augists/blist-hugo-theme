@@ -6,7 +6,7 @@
       </a>
     </div>
 
-    <h5 class="text-gray-500 text-base italic">
+    <h5 class="text-gray-500 dark:text-gray-200 text-base italic">
       <div class="flex flex-row flex-wrap" style="gap: 0rem;">
         {{ $length := 0 }}
         {{ range .Params.paper.author }}
@@ -38,7 +38,7 @@
       </div>
     </h5>
 
-    <h5 class="italic text-gray-500 flex flex-row text-base" style="align-items: center; gap: 0.25rem;">
+    <h5 class="italic text-gray-500 dark:text-gray-200 flex flex-row text-base" style="align-items: center; gap: 0.25rem;">
       <div>
         {{ .Params.publisher }}
       </div>
