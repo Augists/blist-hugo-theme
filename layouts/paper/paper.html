@@ -44,36 +44,33 @@
 
     </div>
 
-    <!-- <div> -->
-    <!--   <h2> -->
-    <!--     People -->
-    <!--   </h2> -->
-    <!--   <div class="flex flex-row justify-around"> -->
-    <!--   {{ $peopleSlice := (where .Site.RegularPages "Type" "people") }} -->
-    <!--   {{ $paperAuthorSlice := .Params.paper.author }} -->
-    <!---->
-    <!--   {{ range $paperAuthor := $paperAuthorSlice }} -->
-    <!--     {{ if $paperAuthor.id }} -->
-    <!--       {{ range $people := $peopleSlice.ByDate }} -->
-    <!--         {{ if eq $paperAuthor.id $people.Params.name }} -->
-    <!--           {{- partial "author-card.html" . -}} -->
-    <!--         {{ end }} -->
-    <!--       {{ end }} -->
-    <!--     {{ end }} -->
-    <!--   {{ end }} -->
-    <!--   </div> -->
-    <!-- </div> -->
-
-    {{ if .Params.bibtex }}
     <div>
       <h2>
-        BibTeX
+        People
       </h2>
-      <pre class="bg-slate-100 text-black dark:bg-gray-900 dark:text-white"><code >{{ .Params.bibtex }}</code></pre>
-      {{ if .Params.doi }}
-      <div class="m-0 text-xs font-light text-zinc-400 dark:text-zinc-600 italic" style="font-size: 0.75rem; line-height: 1rem;">
-        Research Collection: {{ .Params.doi }}
+      <div class="flex flex-row justify-around">
+      {{ $peopleSlice := (where .Site.RegularPages "Type" "people") }}
+      {{ $paperAuthorSlice := .Params.paper.author }}
+
+      {{ range $paperAuthor := $paperAuthorSlice }}
+        {{ if $paperAuthor.id }}
+          {{ range $people := $peopleSlice.ByDate }}
+            {{ if eq $paperAuthor.id $people.Params.name }}
+              {{- partial "author-card.html" . -}}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
       </div>
+    </div>
+
+    {{ if .Params.abstract }}
+    <div>
+      <h2>
+        Abstract
+      </h2>
+      {{ range .Params.abstract }}
+        {{ . }}
       {{ end }}
     </div>
     {{ end }}
@@ -148,6 +145,20 @@
       </span>
       {{ end }}
     </div>
+
+    {{ if .Params.bibtex }}
+    <div>
+      <h2>
+        BibTeX
+      </h2>
+      <pre class="bg-slate-100 text-black dark:bg-gray-900 dark:text-white"><code >{{ .Params.bibtex }}</code></pre>
+      <!-- {{ if .Params.doi }} -->
+      <!-- <div class="m-0 text-xs font-light text-zinc-400 dark:text-zinc-600 italic" style="font-size: 0.75rem; line-height: 1rem;"> -->
+      <!--   Research Collection: {{ .Params.doi }} -->
+      <!-- </div> -->
+      <!-- {{ end }} -->
+    </div>
+    {{ end }}
 
   </div>
 {{ end }}

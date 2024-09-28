@@ -10,7 +10,15 @@
   <div class="sm:my-2 flex flex-col flex-wrap sm:items-center">
     <div class="p-0">
       <a href="{{ .Permalink }}">
-        <div class="text-xl font-semibold text-center">{{ .Params.title }}</div>
+        <div class="text-xl font-semibold text-center">
+          {{ if eq $.Page.Language.LanguageName "English" }}
+            {{ .Params.title }}
+          {{ else }}
+            {{ $title := "@1 (@2)"}}
+            {{ $title = replace $title "@1" .Params.title }}
+            {{ replace $title "@2" .Params.name_cn }}
+          {{ end }}
+        </div>
       </a>
     </div>
 

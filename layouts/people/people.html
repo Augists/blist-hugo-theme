@@ -254,7 +254,7 @@
       {{ end }}
 
       <!-- paper -->
-      {{ $paperSlice := (where (where .Site.RegularPages.ByDate "Type" "paper") "Type" "paper") }}
+      {{ $paperSlice := (where (where .Site.RegularPages.ByDate.Reverse "Type" "paper") "Type" "paper") }}
       {{ $author := .Params.name }}
       {{ $flag := false }}
       {{ $publications := slice }}
