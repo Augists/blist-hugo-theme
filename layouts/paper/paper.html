@@ -75,6 +75,17 @@
     </div>
     {{ end }}
 
+    <div class="flex flex-row gap-2 mt-2">
+      <div class="font-light text-zinc-400 dark:text-zinc-600 italic">
+        Research Area:
+      </div>
+      {{ range .Params.research_label }}
+      <a href="/research/{{ . }}">
+        {{ . }}
+      </a>
+      {{ end }}
+    </div>
+
     {{ if .Params.video }}
     <!-- 16:9 ratio -->
     <h2>
