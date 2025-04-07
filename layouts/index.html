@@ -3,7 +3,7 @@
   {{ $frontBundle := .Site.Params.frontBundle | default "blog" }}
   <div class=" dark:bg-gray-900 container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-4" style="margin-bottom: 3rem;">
     <div class="text-4xl font-semibold">
-    {{ if .Site.IsMultiLingual }}
+    {{ if hugo.IsMultilingual }}
       {{ .Site.Params.news }}
     {{ else }}
       News

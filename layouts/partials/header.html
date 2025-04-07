@@ -48,7 +48,7 @@
             {{ end }}
           {{ end }}
 
-          {{ if .Site.IsMultiLingual }}
+          {{ if hugo.IsMultilingual }}
           {{ if ge (len .Site.Languages) 3 }}
           <li class="relative cursor-pointer">
             <span class="language-switcher flex items-center gap-2">
