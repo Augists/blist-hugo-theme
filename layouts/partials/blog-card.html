@@ -27,7 +27,7 @@
 
   <div class="my-4 mx-6">
   <div class="mb-2">
-    <div class="text-xl font-semibold">{{ .Params.title }}</div>
+    <div class="text-xl font-semibold">{{ .Params.title | safe.HTML }}</div>
 
     {{ if not (or (or .Site.Params.hideMeta .Params.hideMeta) false) }}
     <h5 class="text-sm flex items-center flex-wrap text-gray-700 dark:text-white">

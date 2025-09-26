@@ -2,7 +2,7 @@
   <div class="mb-4 flex flex-col flex-wrap">
     <div class="p-0">
       <a style="text-decoration-line: none;" href="{{ .Permalink }}">
-        <div class="paper-title text-lg">{{ .Params.title }}</div>
+        <div class="paper-title text-lg">{{ .Params.title | safe.HTML }}</div>
       </a>
     </div>
 
