@@ -213,3 +213,10 @@ main {
   /* color: #172554; */
   /* color: #ff7e79; */
 }
+
+span[style*="font-variant: small-caps"] {
+  font-variant-caps: all-small-caps;
+  font-size: 118%;
+  margin-left: 0.02em;
+  letter-spacing: 0.04em;
+}
