@@ -215,8 +215,10 @@ main {
 }
 
 span[style*="small-caps"] {
-  font-variant-caps: all-small-caps;
-  font-size: 118%;
+  text-transform: uppercase;
+  font-size: 84%;
+  /* font-variant-caps: all-small-caps;
+  font-size: 118%; */
   margin-left: 0.02em;
   letter-spacing: 0.04em;
 }
