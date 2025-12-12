@@ -1,6 +1,15 @@
 {{ define "main" }}
   {{- partial "intro.html" . -}}
   {{ $frontBundle := .Site.Params.frontBundle | default "blog" }}
+  {{ $newsPages := where (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle) "Layout" .Language.Lang }}
+  {{ $limit := 5 }}
+  {{ $hasMore := gt (len $newsPages) $limit }}
+  {{ $moreLabel := "Show more news" }}
+  {{ $lessLabel := "Show fewer news" }}
+  {{ if eq .Language.Lang "zh" }}
+    {{ $moreLabel = "展开更多新闻" }}
+    {{ $lessLabel = "收起新闻" }}
+  {{ end }}
   <div class=" dark:bg-gray-900 container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-4" style="margin-bottom: 3rem;">
     <div class="text-4xl font-semibold">
     {{ if hugo.IsMultilingual }}
@@ -9,8 +18,24 @@
       News
     {{ end }}
     </div>
-    {{ range (where (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle) "Layout" .Language.Lang ) }}
+    {{ range (first $limit $newsPages) }}
       {{- partial "blog-card.html" . -}}
+    {{ end }}
+    {{ if $hasMore }}
+      <div id="more-news" class="hidden flex flex-col flex-auto flex-wrap gap-4">
+        {{ range (after $limit $newsPages) }}
+          {{- partial "blog-card.html" . -}}
+        {{ end }}
+      </div>
+      <div class="text-center">
+        <button
+          type="button"
+          class="mt-2 inline-flex items-center justify-center px-6 py-2 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-100"
+          data-more-text="{{ $moreLabel }}"
+          data-less-text="{{ $lessLabel }}"
+          onclick="(function(btn){var target=document.getElementById('more-news');if(!target){return;}var isHidden=target.classList.contains('hidden');if(isHidden){target.classList.remove('hidden');btn.textContent=btn.dataset.lessText;}else{target.classList.add('hidden');btn.textContent=btn.dataset.moreText;}})(this);"
+        >{{ $moreLabel }}</button>
+      </div>
     {{ end }}
   </div>
 

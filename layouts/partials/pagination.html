@@ -1,3 +1,29 @@
-<div class="grid place-items-center mb-8">
-  {{ template "_internal/pagination.html" . }}
-</div>
+asdfasfasdfasd
+{{ $paginator := .Paginator }}
+{{ if and $paginator (gt $paginator.TotalPages 1) }}
+<nav class="grid place-items-center my-8" aria-label="Pagination">
+  <ul class="flex items-center space-x-2">
+    {{ if $paginator.HasPrev }}
+      <li>
+        <a class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800" href="{{ $paginator.Prev.URL }}">« Prev</a>
+      </li>
+    {{ end }}
+
+    {{ range $page := $paginator.Pagers }}
+      <li>
+        {{ if eq $page $paginator }}
+          <span class="px-3 py-1 rounded bg-gray-900 text-white dark:bg-white dark:text-gray-900">{{ $page.PageNumber }}</span>
+        {{ else }}
+          <a class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800" href="{{ $page.URL }}">{{ $page.PageNumber }}</a>
+        {{ end }}
+      </li>
+    {{ end }}
+
+    {{ if $paginator.HasNext }}
+      <li>
+        <a class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800" href="{{ $paginator.Next.URL }}">Next »</a>
+      </li>
+    {{ end }}
+  </ul>
+</nav>
+{{ end }}

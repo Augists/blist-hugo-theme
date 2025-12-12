@@ -1,4 +1,17 @@
 {{ define "main" }}
+  {{ if .IsSection }}
+    <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-8">
+      <div class="text-4xl font-semibold">
+        {{ .Content }}
+      </div>
+
+      <div class="flex flex-col gap-6 paperlist">
+      {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "paper")  }}
+        {{- partial "paper-card.html" . -}}
+      {{ end }}
+      </div>
+    </div>
+  {{ else }}
   <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto prose prose-zinc dark:prose-dark dark:prose-invert">
     <div class="flex flex-col">
       <h1>
@@ -75,24 +88,22 @@
     </div>
     {{ end }}
 
-    <div class="flex flex-row gap-2 mt-2">
-      <div class="font-light text-zinc-400 dark:text-zinc-600 italic">
-        Research Area:
-      </div>
-      {{ range .Params.research_label }}
-      <a href="/research/{{ . }}">
-        {{ . }}
-      </a>
-      {{ end }}
-    </div>
-
     {{ if .Params.video }}
+    {{ $video := .Params.video }}
+    {{ $embed := $video }}
+    {{ if in $video "youtube.com/watch" }}
+      {{ $id := replaceRE `.*v=([^&]+).*` "$1" $video }}
+      {{ $embed = printf "https://www.youtube.com/embed/%s" $id }}
+    {{ else if hasPrefix $video "https://youtu.be/" }}
+      {{ $id := replaceRE `^https://youtu\\.be/([^?]+).*` "$1" $video }}
+      {{ $embed = printf "https://www.youtube.com/embed/%s" $id }}
+    {{ end }}
     <!-- 16:9 ratio -->
     <h2>
       Video
     </h2>
     <div class="relative w-full overflow-hidden" style="padding-top: 56.25%">
-      <iframe class="absolute top-0 left-0 bottom-0 right-0 w-full h-full border-none"   src="{{ .Params.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe class="absolute top-0 left-0 bottom-0 right-0 w-full h-full border-none"   src="{{ $embed }}" title="Embedded video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     {{ end }}
 
@@ -172,4 +183,5 @@
     {{ end }}
 
   </div>
+  {{ end }}
 {{ end }}

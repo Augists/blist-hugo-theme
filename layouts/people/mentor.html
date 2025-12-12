@@ -153,14 +153,11 @@
         Recent Papers
       </div>
       <div class="flex flex-col">
-        {{ $i := 0 }}
-        {{ range $v := (where .Site.RegularPages.ByDate.Reverse "Type" "paper") }}
-          {{ if $v.Params.Top }}
-            {{ if lt $i 5 }}
-              {{- partial "paper-card.html" . -}}
-              {{ $i = add $i 1 }}
-            {{ end }}
-          {{ end }}
+        {{ $papers := where .Site.RegularPages.ByDate.Reverse "Type" "paper" }}
+        {{ $papers = where $papers ".Params.ccf" "A" }}
+        {{ $papers = where $papers ".Params.publish" "conference" }}
+        {{ range $paper := first 5 $papers }}
+          {{- partial "paper-card.html" $paper -}}
         {{ end }}
         <a href="/papers">More Papers</a>
       </div>

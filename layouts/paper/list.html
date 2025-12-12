@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <div class="container max-w-screen-lg px-6 py-12 mx-auto flex flex-col flex-auto flex-wrap gap-8">
+    <div class="text-4xl font-semibold">
+      {{ .Content }}
+    </div>
+
+    <div class="flex flex-col gap-6 paperlist">
+    {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "paper")  }}
+      {{- partial "paper-card.html" . -}}
+    {{ end }}
+    </div>
+  </div>
+{{ end }}
