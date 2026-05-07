@@ -6,7 +6,7 @@
   {{ end }}
 {{ else }}
   {{ if eq "long" .format }}
-    {{ .date.Format "January 2, 2006" }}
+    {{ .date.Format "Jan 02, 2006" }}
   {{ else }}
     {{ .date.Format "Jan 2, 06" }}
   {{ end }}

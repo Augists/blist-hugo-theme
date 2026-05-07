@@ -2,7 +2,7 @@
   {{- partial "intro.html" . -}}
   {{ $frontBundle := .Site.Params.frontBundle | default "blog" }}
   {{ $newsPages := where (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle) "Layout" .Language.Lang }}
-  {{ $limit := 5 }}
+  {{ $limit := 10 }}
   {{ $hasMore := gt (len $newsPages) $limit }}
   {{ $moreLabel := "Show more news" }}
   {{ $lessLabel := "Show fewer news" }}
@@ -18,13 +18,15 @@
       News
     {{ end }}
     </div>
+    <div id="news-grid" class="flex flex-col gap-4">
     {{ range (first $limit $newsPages) }}
-      {{- partial "blog-card.html" . -}}
+      <div data-news-item>{{- partial "blog-card.html" . -}}</div>
     {{ end }}
+    </div>
     {{ if $hasMore }}
       <div id="more-news" class="hidden flex flex-col flex-auto flex-wrap gap-4">
         {{ range (after $limit $newsPages) }}
-          {{- partial "blog-card.html" . -}}
+          <div data-news-item>{{- partial "blog-card.html" . -}}</div>
         {{ end }}
       </div>
       <div class="text-center">
@@ -48,4 +50,71 @@
   <!--   </a> -->
   <!-- </div> -->
   <!-- {{ end }} -->
+
+  <script>
+  (function () {
+    var grid = document.getElementById('news-grid');
+    if (!grid) return;
+    var moreNews = document.getElementById('more-news');
+    var minColWidth = 280;
+    var maxCols = 4;
+
+    var topItems = Array.prototype.slice.call(grid.querySelectorAll('[data-news-item]'));
+    var moreItems = moreNews
+      ? Array.prototype.slice.call(moreNews.querySelectorAll('[data-news-item]'))
+      : [];
+
+    function currentItems() {
+      var showingMore = moreNews && !moreNews.classList.contains('hidden');
+      return showingMore ? topItems.concat(moreItems) : topItems.slice();
+    }
+
+    function layoutInto(container, items) {
+      var cols = Math.max(1, Math.min(maxCols, Math.floor(container.clientWidth / minColWidth)));
+      container.innerHTML = '';
+      if (cols === 1) {
+        container.className = 'flex flex-col gap-4';
+        items.forEach(function (it) { container.appendChild(it); });
+        return;
+      }
+      container.className = 'flex flex-row gap-4 items-start';
+      var columns = [];
+      for (var i = 0; i < cols; i++) {
+        var col = document.createElement('div');
+        col.className = 'flex flex-col gap-4 flex-1 min-w-0';
+        container.appendChild(col);
+        columns.push(col);
+      }
+      items.forEach(function (it) {
+        var shortest = columns[0];
+        for (var j = 1; j < columns.length; j++) {
+          if (columns[j].offsetHeight < shortest.offsetHeight) shortest = columns[j];
+        }
+        shortest.appendChild(it);
+      });
+    }
+
+    function relayout() {
+      layoutInto(grid, currentItems());
+      if (moreNews) moreNews.innerHTML = '';
+    }
+
+    relayout();
+
+    if (moreNews) {
+      var btn = document.querySelector('[data-more-text]');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          setTimeout(relayout, 0);
+        });
+      }
+    }
+
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(relayout, 150);
+    });
+  })();
+  </script>
 {{ end }}
