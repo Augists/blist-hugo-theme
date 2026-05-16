@@ -1,25 +1,21 @@
 <div class="{{ .Site.Params.ascentColor }} dark:bg-gray-800 rounded-lg px-6 py-4">
   {{ $datestr := (partial "date.html" (dict "date" .Date "language" $.Page.Language "format" "long")) }}
 
-  <div class="flex items-center gap-4">
-    <div class="flex-1 min-w-0">
-      <div class="text-xl font-semibold leading-snug">
-        {{ .Params.title | safe.HTML }}
-      </div>
-
-      {{ if not (or (or .Site.Params.hideMeta .Params.hideMeta) false) }}
-      <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-        {{ $datestr }}
-      </div>
-      {{ end }}
-
-      {{ with .Params.description }}
-      <div class="mt-2 text-gray-700 dark:text-gray-300">{{ . }}</div>
-      {{ end }}
-    </div>
-
-    {{ with .Params.thumbnail }}
-    <img src="{{ . }}" alt="" class="rounded h-24 w-24 object-cover flex-shrink-0" />
-    {{ end }}
+  <div class="text-xl font-semibold leading-snug">
+    {{ .Params.title | safe.HTML }}
   </div>
+
+  {{ if not (or (or .Site.Params.hideMeta .Params.hideMeta) false) }}
+  <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+    {{ $datestr }}
+  </div>
+  {{ end }}
+
+  {{ with .Params.description }}
+  <div class="mt-2 text-gray-700 dark:text-gray-300">{{ . }}</div>
+  {{ end }}
+
+  {{ with .Params.thumbnail }}
+  <img src="{{ . }}" alt="" class="mt-3 rounded w-1/2 h-auto max-h-72 object-contain mx-auto" />
+  {{ end }}
 </div>

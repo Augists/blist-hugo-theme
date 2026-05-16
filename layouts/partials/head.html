@@ -17,7 +17,7 @@
   
   {{ hugo.Generator }}
 
-  {{- $styles := resources.Get "css/styles.css" | postCSS (dict "config" "./assets/css/") -}}
+  {{- $styles := resources.Get "css/styles.css" | postCSS (dict "config" "./assets/css/" "inlineImports" true "skipInlineImportsNotFound" true) -}}
   {{- if hugo.IsServer }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
   {{ else }}

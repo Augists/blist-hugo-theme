@@ -1,17 +1,18 @@
-const themeDir = __dirname + "/../../";
+const path = require("path");
+const themeDir = path.resolve(__dirname, "../..") + "/";
+const projectDir = path.resolve(themeDir, "../..") + "/";
 
 module.exports = {
   content: [
     themeDir + "layouts/**/*.html",
     themeDir + "content/**/*.html",
-    "layouts/**/*.html",
-    "config.toml",
-    "hugo.toml",
-    "content/**/*.html",
-    "assets/js/search.js",
-    "exampleSite/layouts/**/*.html",
-    "exampleSite/config.toml",
-    "exampleSite/content/**/*.html",
+    themeDir + "assets/js/search.js",
+    themeDir + "exampleSite/layouts/**/*.html",
+    themeDir + "exampleSite/content/**/*.html",
+    projectDir + "layouts/**/*.html",
+    projectDir + "content/**/*.html",
+    projectDir + "hugo.toml",
+    projectDir + "config.toml",
   ],
   darkMode: "class",
   theme: {
